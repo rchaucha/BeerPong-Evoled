@@ -8,8 +8,8 @@ class Glass
 public:
    virtual ~Glass() {}
 
-   virtual void removed_action() = 0;
-
+   inline sf::Vector2f get_position() const noexcept { return _position; }
+   inline sf::Color get_color() const noexcept { return _color; }
 
 protected:
    Glass(sf::Vector2f position, sf::Color color = sf::Color::White) :
@@ -17,6 +17,7 @@ protected:
 
    Glass(const Glass& orig) = delete;
 
+private:
    sf::Vector2f _position;
    sf::Color _color;
 };
