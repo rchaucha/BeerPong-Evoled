@@ -6,9 +6,9 @@
 #include <SFML/Window/Event.hpp>
 #include <opencv2/highgui.hpp>
 
-#include "../tools/RGBCameraInput.hpp"
-#include "../tools/RGBCameraInput.hpp"
-#include "../tools/DetectionTools.hpp"
+#include "../Tools/RGBCameraInput.hpp"
+#include "../Tools/RGBCameraInput.hpp"
+#include "../Tools/DetectionTools.hpp"
 
 
 sf::Vector2u window_size, frame_size;
