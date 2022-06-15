@@ -8,8 +8,7 @@
 class GameMode
 {
 public:
-   GameMode(sf::Vector2f position, sf::Color color = sf::Color::White)
-   {};
+   GameMode(sf::Vector2f position, sf::Color color = sf::Color::White) {};
 
    virtual void update_logic() = 0;
    virtual void update_view() = 0;

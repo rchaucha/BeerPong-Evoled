@@ -1,8 +1,8 @@
 # Binaries
-BeerPong-Evoled/bin
+BeerPong-Ultimate/bin
 
 
 # Visual Studio files
 *.sln
 *.vcxproj*
-BeerPong-Evoled/.vs
+BeerPong-Ultimate/.vs
