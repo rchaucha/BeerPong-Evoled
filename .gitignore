@@ -1,8 +1,12 @@
 # Binaries
 BeerPong-Ultimate/bin
+BeerPong-Ultimate/x64
 
 
 # Visual Studio files
 *.sln
 *.vcxproj*
 BeerPong-Ultimate/.vs
+
+# Backups
+backups/

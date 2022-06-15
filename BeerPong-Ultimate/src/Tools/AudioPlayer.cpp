@@ -1,5 +1,5 @@
 #include "AudioPlayer.hpp"
-#include "tools/FilesManager.hpp"
+#include "FilesManager.hpp"
 
 //std::unordered_map<const std::string, std::unique_ptr<sf::Music>> AudioPlayer::_musics_by_names;
 
