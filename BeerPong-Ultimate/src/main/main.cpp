@@ -4,12 +4,15 @@
 #include <SFML/Window/Event.hpp>
 #include <opencv2/highgui.hpp>
 #include <QtWidgets/QApplication>
+#include <QWindow>
+#include <QPainter>
 
 #include "../GUI/Qt/QtGUI.hpp"
 #include "../Tools/RGBCameraInput.hpp"
 #include "../Tools/RGBCameraInput.hpp"
 #include "../Tools/DetectionTools.hpp"
 #include "../GUI/SFML/SFMLWindow.hpp"
+#include "../GUI/Qt/ProjectorDisplay.hpp"
 
 
 sf::Vector2u window_size, frame_size;
@@ -44,19 +47,26 @@ int main(int argc, char* argv[])
 
    // Qt
    QApplication qt_application(argc, argv);
-   QtGUI w;
-   w.show();
+   QtGUI qt_win;
+   qt_win.show();
+   qt_win.windowHandle()->setScreen(qApp->screens()[0]);
 
+
+   ProjectorDisplay projector_win(&qt_win);
+   projector_win.show();
+   projector_win.windowHandle()->setScreen(qApp->screens()[1]);
+   projector_win.showFullScreen();
+
+/*
    // SFML
-   SFMLWindow
-   sf::RenderWindow window(sf::VideoMode::getFullscreenModes()[0], "Interactive table", sf::Style::Fullscreen);
-
-   window_size = window.getSize();
+   SFMLWindow sfml_win(sf::VideoMode::getFullscreenModes()[0], "Interactive table");
+ 
+   window_size = sfml_win.getSize();
    frame_size = rgb_cam->getFrameSize();
-   
-   cv::Rect2d projected_area = cv::selectROI(rgb_cam->getFrame(), true, true);
+ 
+   cv::Rect2d projected_area = cv::selectROI(rgb_cam->getFrame(), false, false);
 
-   while (window.isOpen())
+   while (sfml_win.isOpen())
    {
       rgb_cam->updateFrame();
 
@@ -66,11 +76,11 @@ int main(int argc, char* argv[])
          return -1;
       }
 
-      window.clear(sf::Color::Black);
-      window.display();
+      sfml_win.clear(sf::Color::Black);
+      //sfml_win.display();
 
       sf::Event event;
-      while (window.pollEvent(event))
+      while (sfml_win.pollEvent(event))
       {
          // "Enter" -> new detection
          if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Enter)
@@ -92,7 +102,7 @@ int main(int argc, char* argv[])
          if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape)
             exit(0);
       }
-   }
+   }*/
 
-   return 0;
+   return qt_application.exec();;
 }

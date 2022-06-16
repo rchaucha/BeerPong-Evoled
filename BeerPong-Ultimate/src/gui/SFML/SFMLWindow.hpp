@@ -12,4 +12,3 @@ public :
 
    void update(const std::vector<sf::CircleShape>& cicles);
 };
-
