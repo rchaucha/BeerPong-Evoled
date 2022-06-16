@@ -11,5 +11,5 @@ public:
     QtGUI(QWidget *parent = Q_NULLPTR);
 
 private:
-    Ui::QtGUIClass ui;
+    Ui::QtGUIClass _ui;
 };

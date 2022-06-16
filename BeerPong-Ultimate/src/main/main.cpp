@@ -1,16 +1,15 @@
 #include <iostream>
 #include <execution>
 
-#include <SFML/Graphics/RenderWindow.hpp>
-#include <SFML/Graphics/CircleShape.hpp>
 #include <SFML/Window/Event.hpp>
 #include <opencv2/highgui.hpp>
 #include <QtWidgets/QApplication>
 
-#include "QtGUI.hpp"
+#include "../GUI/Qt/QtGUI.hpp"
 #include "../Tools/RGBCameraInput.hpp"
 #include "../Tools/RGBCameraInput.hpp"
 #include "../Tools/DetectionTools.hpp"
+#include "../GUI/SFML/SFMLWindow.hpp"
 
 
 sf::Vector2u window_size, frame_size;
@@ -49,6 +48,7 @@ int main(int argc, char* argv[])
    w.show();
 
    // SFML
+   SFMLWindow
    sf::RenderWindow window(sf::VideoMode::getFullscreenModes()[0], "Interactive table", sf::Style::Fullscreen);
 
    window_size = window.getSize();
