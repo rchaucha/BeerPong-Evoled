@@ -1,27 +1,26 @@
 #include <iostream>
 #include <execution>
 
-#include <SFML/Window/Event.hpp>
 #include <opencv2/highgui.hpp>
 #include <QtWidgets/QApplication>
 #include <QWindow>
 #include <QPainter>
+#include <QVector2D>
 
 #include "../GUI/Qt/QtGUI.hpp"
 #include "../Tools/RGBCameraInput.hpp"
 #include "../Tools/RGBCameraInput.hpp"
 #include "../Tools/DetectionTools.hpp"
-#include "../GUI/SFML/SFMLWindow.hpp"
 #include "../GUI/Qt/ProjectorDisplay.hpp"
 
 
-sf::Vector2u window_size, frame_size;
+QSize window_size, frame_size;
 
-sf::Vector2f frame2Window(const sf::Vector2f frame_coordinates)
+QVector2D frame2Window(const QVector2D frame_coordinates)
 {
-   float x = frame_coordinates.x * (window_size.x / float(frame_size.x));
-   float y = frame_coordinates.y * (window_size.y / float(frame_size.y));
-   return sf::Vector2f(x, y);
+   float x = frame_coordinates.x() * (window_size.height() / float(frame_size.height()));
+   float y = frame_coordinates.y() * (window_size.width() / float(frame_size.width()));
+   return QVector2D(x, y);
 }
 
 
@@ -47,26 +46,22 @@ int main(int argc, char* argv[])
 
    // Qt
    QApplication qt_application(argc, argv);
-   QtGUI qt_win;
-   qt_win.show();
-   qt_win.windowHandle()->setScreen(qApp->screens()[0]);
+   QtGUI main_gui;
+   main_gui.show();
+   main_gui.windowHandle()->setScreen(qApp->screens()[0]);
 
-
-   ProjectorDisplay projector_win(&qt_win);
+   ProjectorDisplay projector_win(&main_gui);
    projector_win.show();
    projector_win.windowHandle()->setScreen(qApp->screens()[1]);
    projector_win.showFullScreen();
 
-/*
-   // SFML
-   SFMLWindow sfml_win(sf::VideoMode::getFullscreenModes()[0], "Interactive table");
- 
-   window_size = sfml_win.getSize();
+
+   window_size = projector_win.size();
    frame_size = rgb_cam->getFrameSize();
  
    cv::Rect2d projected_area = cv::selectROI(rgb_cam->getFrame(), false, false);
 
-   while (sfml_win.isOpen())
+   while (main_gui.is_activity_closed())
    {
       rgb_cam->updateFrame();
 
@@ -76,9 +71,7 @@ int main(int argc, char* argv[])
          return -1;
       }
 
-      sfml_win.clear(sf::Color::Black);
-      //sfml_win.display();
-
+      /*
       sf::Event event;
       while (sfml_win.pollEvent(event))
       {
@@ -101,8 +94,8 @@ int main(int argc, char* argv[])
          // "Echap" -> exit
          if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape)
             exit(0);
-      }
-   }*/
+      }*/
+   }
 
-   return qt_application.exec();;
+   return qt_application.exec();
 }

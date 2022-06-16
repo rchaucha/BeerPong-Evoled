@@ -2,7 +2,7 @@
 
 #include <opencv2\core\mat.hpp>
 #include <opencv2\videoio.hpp>
-#include <SFML\System\Vector2.hpp>
+#include <QVector2D>
 
 class RGBCameraInput
 {
@@ -16,7 +16,7 @@ public:
 
    bool isFrameEmpty() const { return _current_frame.rows == 0 || _current_frame.cols == 0; }
 
-   sf::Vector2u getFrameSize() const { return sf::Vector2u(_current_frame.cols, _current_frame.rows); }
+   QVector2D getFrameSize() const { return QVector2D(_current_frame.cols, _current_frame.rows); }
 
    void updateFrame() { _cap >> _current_frame; }
    cv::Mat getFrame() const { return _current_frame; }
