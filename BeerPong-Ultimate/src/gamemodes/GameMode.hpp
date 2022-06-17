@@ -8,7 +8,7 @@
 class GameMode
 {
 public:
-   virtual void update_logic() = 0;
+   virtual void update_logic(std::map<unsigned long, QRectF> &circles) = 0;
    virtual void update_view() = 0;
 
 protected:

@@ -1,6 +1,7 @@
 #include "BeerPongUltimateApp.hpp"
 
 #include <iostream>
+#include "../Tools/DetectionTools.hpp"
 #include "../Tools/RGBCameraInput.hpp"
 
 QVector2D BeerPongUltimateApp::frame2Window(const QVector2D frame_coordinates) const
@@ -31,4 +32,26 @@ BeerPongUltimateApp::BeerPongUltimateApp(int& argc, char** argv) :
       std::cerr << "Image vide" << std::endl;
       return -1;
    }
+}
+
+
+void BeerPongUltimateApp::update_glasses() 
+{
+   _rgb_cam->updateFrame();
+
+   if (_rgb_cam->isFrameEmpty())
+   {
+      std::cerr << "Image vide" << std::endl;
+      return -1;
+   }
+
+   std::vector<cv::Rect2d> glasses_rect = DetectionTools::glasses(rgb_cam->getFrame());
+
+   std::transform(std::execution::par_unseq, glasses_rect.begin(), glasses_rect.end(), glasses_circle.begin(),
+      [](cv::Rect2d& glass)
+      {
+         // Construire la map en cherchant pour chaque cercle son correspondant dans _circles
+      });
+   
+   
 }
