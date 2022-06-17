@@ -2,6 +2,7 @@
 
 #include <QApplication>
 #include <QVector2D>
+#include <map>
 
 class RGBCameraInput;
 
@@ -13,7 +14,7 @@ public:
    BeerPongUltimateApp(int& argc, char** argv);
 
 public slots:
-   void detect_glasses() {  }
+   void update_glasses();
 
 private :
    QVector2D frame2Window(const QVector2D frame_coordinates) const;
@@ -22,6 +23,8 @@ private :
 
    RGBCameraInput* _rgb_cam;
 
-   std::vector<QRectF> _circles;
+   std::map<unsigned long, QRectF> _circles;
+
+   unsigned long _circles_id_count = 0;
 };
 

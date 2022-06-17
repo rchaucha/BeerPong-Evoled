@@ -14,5 +14,5 @@ public:
 protected:
    GameMode() {};
 
-   std::list<std::shared_ptr<Glass>> _glasses;
+   std::map<unsigned long, Glass> _glasses;
 };
