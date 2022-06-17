@@ -15,7 +15,6 @@ QVector2D BeerPongUltimateApp::frame2Window(const QVector2D frame_coordinates) c
 BeerPongUltimateApp::BeerPongUltimateApp(int& argc, char** argv) :
    QApplication(argc, argv)
 {
-   // Camera
    _rgb_cam = RGBCameraInput::getInstance();
 
    if (!_rgb_cam->openCamera())
@@ -24,7 +23,8 @@ BeerPongUltimateApp::BeerPongUltimateApp(int& argc, char** argv) :
       return -1;
    }
 
-   for (int i = 0; i < 30; i++)     // on laisse passer quelques images pour que la camera se stabilise
+   // on laisse passer quelques images pour que la camera se stabilise
+   for (int i = 0; i < 30; i++)     
       _rgb_cam->updateFrame();
 
    if (_rgb_cam->isFrameEmpty())
@@ -45,7 +45,7 @@ void BeerPongUltimateApp::update_glasses()
       return -1;
    }
 
-   std::vector<cv::Rect2d> glasses_rect = DetectionTools::glasses(rgb_cam->getFrame());
+   std::vector<QRectF> glasses_rect = DetectionTools::glasses(_rgb_cam->getFrame());
 
    std::transform(std::execution::par_unseq, glasses_rect.begin(), glasses_rect.end(), glasses_circle.begin(),
       [](cv::Rect2d& glass)
