@@ -9,19 +9,8 @@
 
 #include "../GUI/Qt/QtGUI.hpp"
 #include "../Tools/RGBCameraInput.hpp"
-#include "../Tools/RGBCameraInput.hpp"
 #include "../Tools/DetectionTools.hpp"
 #include "../GUI/Qt/ProjectorDisplay.hpp"
-
-
-QSize window_size, frame_size;
-
-QVector2D frame2Window(const QVector2D frame_coordinates)
-{
-   float x = frame_coordinates.x() * (window_size.height() / float(frame_size.height()));
-   float y = frame_coordinates.y() * (window_size.width() / float(frame_size.width()));
-   return QVector2D(x, y);
-}
 
 
 int main(int argc, char* argv[])

@@ -6,17 +6,19 @@
 #include "opencv2/imgproc.hpp"
 
 // Creation of the rectangle containing the circle
-cv::Rect2d circlesToRect(cv::Vec3f c)
+QRectF circlesToRect(cv::Vec3f c)
 {
-   double rayon = c[2];
-   double x = c[0] - rayon;
-   double y = c[1] - rayon;
+   double radius = c[2];
+   double x = c[0] - radius;
+   double y = c[1] - radius;
 
-   return cv::Rect2d(x, y, 2.0 * rayon, 2.0 * rayon);
+   return QRectF(x, y, 2.0 * radius, 2.0 * radius);
 }
 
 // Detect glasses in the image src
-std::vector<cv::Rect2d> DetectionTools::glasses(const cv::Mat src)
+void DetectionTools::glasses( const cv::Mat src, std::vector<QRectF> OUT_rects, 
+                              unsigned int r_min, unsigned int r_max, 
+                              float distance_between_circles, double param1, double param2)
 {
    cv::Mat gray;
    if (src.channels() != 1)    // to greyscale
@@ -26,15 +28,16 @@ std::vector<cv::Rect2d> DetectionTools::glasses(const cv::Mat src)
 
    medianBlur(gray, gray, 5);
 
+   if (distance_between_circles <= 0)
+      distance_between_circles = gray.rows / 9.0;
+
    std::vector<cv::Vec3f> circles;
    HoughCircles(gray, circles, cv::HOUGH_GRADIENT, 1,
-      gray.rows / 9.0,  // change this value to detect circles with different distances to each other
-      100, 30, R_MIN, R_MAX);
-   
-   std::vector<cv::Rect2d> rects;
-   rects.resize(circles.size());
+      distance_between_circles,
+      param1, param2, r_min, r_max);
 
-   std::transform(std::execution::par_unseq, circles.begin(), circles.end(), rects.begin(), circlesToRect);
+   OUT_rects.clear();
+   OUT_rects.resize(circles.size());
 
-   return rects;
+   std::transform(std::execution::par_unseq, circles.begin(), circles.end(), OUT_rects.begin(), circlesToRect);
 }

@@ -2,14 +2,17 @@
 
 #include <opencv2/core/mat.hpp>
 #include <opencv2/core/types.hpp>
+#include <QRectF> 
 
 class DetectionTools
 {
 public:
-   static std::vector<cv::Rect2d> glasses(const cv::Mat src);
-
-private:
-   static const int R_MIN = 20,
-                    R_MAX = 30;
+   static void glasses( const cv::Mat src, 
+                        std::vector<QRectF> OUT_rects,
+                        unsigned int r_min, 
+                        unsigned int r_max, 
+                        float distance_between_circles = 0, 
+                        double param1 = 100, 
+                        double param2 = 30);
 };
 
