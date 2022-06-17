@@ -7,6 +7,7 @@ BeerPong-Ultimate/x64
 *.sln
 *.vcxproj*
 BeerPong-Ultimate/.vs
+BeerPong-Ultimate/src/.vscode
 
 # Backups
 backups/

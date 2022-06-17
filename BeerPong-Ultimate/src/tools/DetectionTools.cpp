@@ -18,22 +18,22 @@ QRectF circlesToRect(cv::Vec3f c)
 // Detect glasses in the image src
 void DetectionTools::glasses( const cv::Mat src, std::vector<QRectF> OUT_rects, 
                               unsigned int r_min, unsigned int r_max, 
-                              float distance_between_circles, double param1, double param2)
+                              float dist_between_circles, double param1, double param2)
 {
    cv::Mat gray;
-   if (src.channels() != 1)    // to greyscale
+   if (src.channels() != 1)    // to grayscale
       cvtColor(src, gray, cv::COLOR_BGR2GRAY);
    else
       gray = src;
 
    medianBlur(gray, gray, 5);
 
-   if (distance_between_circles <= 0)
-      distance_between_circles = gray.rows / 9.0;
+   if (dist_between_circles <= 0)
+      dist_between_circles = gray.rows / 9.0;
 
    std::vector<cv::Vec3f> circles;
    HoughCircles(gray, circles, cv::HOUGH_GRADIENT, 1,
-      distance_between_circles,
+      dist_between_circles,
       param1, param2, r_min, r_max);
 
    OUT_rects.clear();

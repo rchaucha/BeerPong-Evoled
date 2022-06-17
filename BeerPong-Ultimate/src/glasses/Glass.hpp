@@ -1,24 +1,24 @@
 #pragma once
 
-#include <SFML/System/Vector2.hpp>
-#include <SFML/Graphics/Color.hpp>
+#include <QColor>
+#include <QVector2D>
 
 class Glass
 {
 public:
    virtual ~Glass() {}
 
-   inline sf::Vector2f get_position() const noexcept { return _position; }
-   inline sf::Color get_color() const noexcept { return _color; }
+   inline QVector2D get_position() const noexcept { return _position; }
+   inline QColor  get_color() const noexcept { return _color; }
 
 protected:
-   Glass(sf::Vector2f position, sf::Color color = sf::Color::White) :
+   Glass(QVector2D position, QColor color = Qt::white) :
       _position(position), _color(color) {};
 
    Glass(const Glass& orig) = delete;
 
 private:
-   sf::Vector2f _position;
-   sf::Color _color;
+   QVector2D _position;
+   QColor  _color;
 };
 

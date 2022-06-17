@@ -1,8 +1,11 @@
 #include "BeerPongUltimateApp.hpp"
 
 #include <iostream>
+#include <QWindow>
 #include "../Tools/DetectionTools.hpp"
 #include "../Tools/RGBCameraInput.hpp"
+#include "../GUI/ProjectorDisplay.hpp"
+#include "../GUI/QtGUI.hpp"
 
 QVector2D BeerPongUltimateApp::frame2Window(const QVector2D frame_coordinates) const
 {
@@ -15,6 +18,15 @@ QVector2D BeerPongUltimateApp::frame2Window(const QVector2D frame_coordinates) c
 BeerPongUltimateApp::BeerPongUltimateApp(int& argc, char** argv) :
    QApplication(argc, argv)
 {
+   QtGUI main_gui;
+   main_gui.show();
+   main_gui.windowHandle()->setScreen(qApp->screens()[0]);
+
+   ProjectorDisplay projector_win(&main_gui);
+   projector_win.show();
+   projector_win.windowHandle()->setScreen(qApp->screens()[1]);
+   projector_win.showFullScreen();
+
    _rgb_cam = RGBCameraInput::getInstance();
 
    if (!_rgb_cam->openCamera())
@@ -32,6 +44,9 @@ BeerPongUltimateApp::BeerPongUltimateApp(int& argc, char** argv) :
       std::cerr << "Image vide" << std::endl;
       return -1;
    }
+
+   _window_size = projector_win.size();
+   _frame_size = _rgb_cam->getFrameSize();
 }
 
 
@@ -45,7 +60,9 @@ void BeerPongUltimateApp::update_glasses()
       return -1;
    }
 
-   std::vector<QRectF> glasses_rect = DetectionTools::glasses(_rgb_cam->getFrame());
+   std::vector<QRectF> glasses_rect;
+   DetectionTools::glasses(_rgb_cam->getFrame(), glasses_rect, _r_min, _r_max,
+                           _dist_between_circles, _detection_param1, _detection_param2);
 
    std::transform(std::execution::par_unseq, glasses_rect.begin(), glasses_rect.end(), glasses_circle.begin(),
       [](cv::Rect2d& glass)

@@ -11,7 +11,7 @@ public:
                         std::vector<QRectF> OUT_rects,
                         unsigned int r_min, 
                         unsigned int r_max, 
-                        float distance_between_circles = 0, 
+                        float dist_between_circles = 0, 
                         double param1 = 100, 
                         double param2 = 30);
 };
