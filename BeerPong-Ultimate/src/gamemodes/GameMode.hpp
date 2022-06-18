@@ -22,6 +22,8 @@ public:
 protected:
    GameMode() {};
 
+   virtual void _assign_new_glasses() = 0;
+
    //https://stackoverflow.com/questions/470690/how-to-automatically-generate-n-distinct-colors
    static const std::vector<QColor> _boynton_colors;
 
