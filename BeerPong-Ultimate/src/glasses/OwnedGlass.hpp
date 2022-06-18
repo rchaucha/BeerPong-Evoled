@@ -6,8 +6,8 @@
 class OwnedGlass : public Glass
 {
 public:
-   OwnedGlass(std::string owner, sf::Vector2f position, sf::Color color = sf::Color::White) :
-      Glass(position, color), _owner(owner) {};
+   OwnedGlass(std::string owner, QPointF position, float radius, QColor color = Qt::white) :
+      Glass(position, radius, color), _owner(owner) {};
 
    inline std::string get_owner() const noexcept { return _owner; }
 

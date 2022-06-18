@@ -1,9 +1,16 @@
 #include "ProjectorDisplay.hpp"
 
 
-void ProjectorDisplay::update_circles(const std::vector<ColoredCircle>& circles)
+ProjectorDisplay::ProjectorDisplay(QWidget* parent) : 
+   QMainWindow(parent)
 {
-   _circles = circles;
+   this->setStyleSheet("background-color: black;");
+}
+
+
+void ProjectorDisplay::update_circles(std::vector<const ColoredCircle>&& circles)
+{
+   _circles = std::move(circles);
 
    update();
 }
@@ -15,7 +22,7 @@ void ProjectorDisplay::paintEvent(QPaintEvent* event)
 
    for (const ColoredCircle& circle : _circles)
    {
-      painter.setBrush(circle.color);
-      painter.drawEllipse(circle.rect);
+      painter.setBrush(circle.get_color());
+      painter.drawEllipse(circle.get_rect());
    }
 }

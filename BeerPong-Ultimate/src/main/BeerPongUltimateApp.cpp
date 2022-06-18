@@ -32,7 +32,7 @@ unsigned long BeerPongUltimateApp::_get_corresponding_id(const QRectF& rect)
 {
    std::map<float, unsigned long> dist2id;
    std::transform(std::execution::par_unseq, _circles.begin(), _circles.end(), dist2id.begin(),
-      [](auto const& id2circle)
+      [& rect](auto const& id2circle)
       {
          unsigned long ID = id2circle.first;
          QRectF* circle = &id2circle.second;
@@ -151,12 +151,10 @@ void BeerPongUltimateApp::update_glasses()
       _circles[id] = rect;
    }
 
-   std::vector<const ColoredCircle> glasses;
    if (_game_mode)
    {
       _game_mode->update_logic(_circles);
       _game_mode->update_view();
-      glasses = _game_mode->get_glasses();
+      _projector_win.update_circles(_game_mode->get_glasses());
    }
-   _projector_win.update_circles(glasses);
 }
