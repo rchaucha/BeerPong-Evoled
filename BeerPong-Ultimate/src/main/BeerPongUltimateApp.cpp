@@ -1,7 +1,9 @@
 #include "BeerPongUltimateApp.hpp"
 
 #include <iostream>
+#include <opencv2/highgui.hpp>
 #include <QWindow>
+#include <QMessageBox>
 #include "../Tools/DetectionTools.hpp"
 #include "../Tools/RGBCameraInput.hpp"
 #include "../GUI/ProjectorDisplay.hpp"
@@ -15,38 +17,52 @@ QVector2D BeerPongUltimateApp::frame2Window(const QVector2D frame_coordinates) c
    return QVector2D(x, y);
 }
 
-BeerPongUltimateApp::BeerPongUltimateApp(int& argc, char** argv) :
-   QApplication(argc, argv)
+
+int BeerPongUltimateApp::err_msg(const QString& msg)
 {
-   QtGUI main_gui;
-   main_gui.show();
-   main_gui.windowHandle()->setScreen(qApp->screens()[0]);
+   return QMessageBox::critical( &_main_gui, "Error", msg,
+                                 QMessageBox::Retry | QMessageBox::Close, QMessageBox::Retry);
+}
 
-   ProjectorDisplay projector_win(&main_gui);
-   projector_win.show();
-   projector_win.windowHandle()->setScreen(qApp->screens()[1]);
-   projector_win.showFullScreen();
 
-   _rgb_cam = RGBCameraInput::getInstance();
+BeerPongUltimateApp::BeerPongUltimateApp(int& argc, char** argv) :
+   QApplication(argc, argv),
+   _rgb_cam(RGBCameraInput::getInstance())
+{}
 
-   if (!_rgb_cam->openCamera())
+
+int BeerPongUltimateApp::init()
+{
+   _main_gui.show();
+   _main_gui.windowHandle()->setScreen(qApp->screens()[0]);
+
+   _projector_win.setParent(&_main_gui);
+   _projector_win.show();
+   _projector_win.windowHandle()->setScreen(qApp->screens()[1]);
+   _projector_win.showFullScreen();
+
+   while (!_rgb_cam->openCamera())
    {
-      std::cerr << "La webcam est introuvable" << std::endl;
-      return -1;
+      if (err_msg("La webcam est introuvable.") == QMessageBox::Close)
+         exit(0);
    }
 
    // on laisse passer quelques images pour que la camera se stabilise
-   for (int i = 0; i < 30; i++)     
+   for (int i = 0; i < 30; i++)
       _rgb_cam->updateFrame();
 
    if (_rgb_cam->isFrameEmpty())
    {
-      std::cerr << "Image vide" << std::endl;
-      return -1;
+      if (err_msg("Pas d'image reçue de la webcam.") == QMessageBox::Close)
+         exit(0);
    }
 
-   _window_size = projector_win.size();
+   _frame_area = cv::selectROI(_rgb_cam->getFrame(), false, false);
+
+   _window_size = _projector_win.size();
    _frame_size = _rgb_cam->getFrameSize();
+
+   return 0;
 }
 
 
@@ -56,8 +72,8 @@ void BeerPongUltimateApp::update_glasses()
 
    if (_rgb_cam->isFrameEmpty())
    {
-      std::cerr << "Image vide" << std::endl;
-      return -1;
+      if (err_msg("Pas d'image reçue de la webcam.") == QMessageBox::Close)
+         exit(0);
    }
 
    std::vector<QRectF> glasses_rect;

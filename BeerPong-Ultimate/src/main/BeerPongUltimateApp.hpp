@@ -13,6 +13,8 @@ class BeerPongUltimateApp : public QApplication
 public:
    BeerPongUltimateApp(int& argc, char** argv);
 
+   int init();
+
 public slots:
    void update_glasses();
 
@@ -24,7 +26,12 @@ public slots:
 
 private :
    QVector2D frame2Window(const QVector2D frame_coordinates) const;
+   int err_msg(const QString& msg);
 
+   QtGUI _main_gui;
+   ProjectorDisplay _projector_win;
+
+   cv::Rect2d _frame_area;
    QSize _window_size, _frame_size;
    RGBCameraInput* _rgb_cam;
    std::map<unsigned long, QRectF> _circles;
