@@ -10,6 +10,7 @@
 #include "../Tools/RGBCameraInput.hpp"
 #include "../GUI/ProjectorDisplay.hpp"
 #include "../GUI/QtGUI.hpp"
+#include "../gamemodes/GameMode.hpp"
 
 QVector2D BeerPongUltimateApp::_frame2window(const QVector2D frame_coordinates) const
 {
@@ -59,8 +60,21 @@ unsigned long BeerPongUltimateApp::_get_corresponding_id(const QRectF& rect)
 
 BeerPongUltimateApp::BeerPongUltimateApp(int& argc, char** argv) :
    QApplication(argc, argv),
-   _rgb_cam(RGBCameraInput::getInstance())
+   _game_mode(nullptr),
+   _rgb_cam(RGBCameraInput::getInstance()),
+   _circles_id_count(0),
+   _r_min(0),
+   _r_max(100),
+   _dist_between_circles(0.f),
+   _detection_param1(100),
+   _detection_param2(30)
 {}
+
+
+BeerPongUltimateApp::~BeerPongUltimateApp()
+{
+   close_current_gamemode();
+}
 
 
 int BeerPongUltimateApp::init()
@@ -98,6 +112,19 @@ int BeerPongUltimateApp::init()
 }
 
 
+void BeerPongUltimateApp::launch_gamemode(GameMode* gamemode)
+{
+   _game_mode = gamemode;
+}
+
+
+void BeerPongUltimateApp::close_current_gamemode()
+{
+   delete _game_mode;
+   _game_mode = nullptr;
+}
+
+
 void BeerPongUltimateApp::update_glasses() 
 {
    _rgb_cam->updateFrame();
@@ -112,9 +139,24 @@ void BeerPongUltimateApp::update_glasses()
    DetectionTools::glasses(_rgb_cam->getFrame(), glasses_rect, _r_min, _r_max,
                            _dist_between_circles, _detection_param1, _detection_param2);
 
-   std::transform(std::execution::par_unseq, glasses_rect.begin(), glasses_rect.end(), glasses_circle.begin(),
-      [](cv::Rect2d& glass)
-      {
-         // Construire la map en cherchant pour chaque cercle son correspondant dans _circles
-      });
+   std::vector<QRectF> new_circles;
+   for (const QRectF& rect : glasses_rect)
+   {
+      auto id = _get_corresponding_id(rect);
+
+      // If the circle doesn't match any of the old ones, we create a new id for it
+      if (id == -1)
+         id = ++_circles_id_count;
+      
+      _circles[id] = rect;
+   }
+
+   std::vector<const ColoredCircle> glasses;
+   if (_game_mode)
+   {
+      _game_mode->update_logic(_circles);
+      _game_mode->update_view();
+      glasses = _game_mode->get_glasses();
+   }
+   _projector_win.update_circles(glasses);
 }

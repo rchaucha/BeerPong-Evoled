@@ -6,6 +6,7 @@
 #include <opencv2/core/types.hpp>
 
 class RGBCameraInput;
+class GameMode;
 
 class BeerPongUltimateApp : public QApplication
 {
@@ -13,11 +14,14 @@ class BeerPongUltimateApp : public QApplication
 
 public:
    BeerPongUltimateApp(int& argc, char** argv);
+   ~BeerPongUltimateApp();
 
    int init();
 
 public slots:
    void update_glasses();
+   void launch_gamemode(GameMode* gamemode);
+   void close_current_gamemode();
 
    void set_r_min(unsigned int r_min) { _r_min = r_min; }
    void set_r_max(unsigned int r_max) { _r_max = r_max; }
@@ -33,17 +37,19 @@ private :
    QtGUI _main_gui;
    ProjectorDisplay _projector_win;
 
+   GameMode* _game_mode;
+
    cv::Rect2d _frame_area;
    QSize _window_size, _frame_size;
    RGBCameraInput* _rgb_cam;
 
    std::map<unsigned long, QRectF> _circles;
+   unsigned long _circles_id_count;
 
-   unsigned long _circles_id_count = 0;
    unsigned int _r_min;
    unsigned int _r_max;
-   float _dist_between_circles = 0;
-   double _detection_param1 = 100;
-   double _detection_param2 = 30;
+   float _dist_between_circles;
+   double _detection_param1;
+   double _detection_param2;
 };
 
