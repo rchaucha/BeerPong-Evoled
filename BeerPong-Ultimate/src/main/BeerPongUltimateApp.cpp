@@ -1,6 +1,8 @@
 #include "BeerPongUltimateApp.hpp"
 
-#include <iostream>
+#include <execution>
+#include <algorithm>
+#include <cmath>
 #include <opencv2/highgui.hpp>
 #include <QWindow>
 #include <QMessageBox>
@@ -9,7 +11,7 @@
 #include "../GUI/ProjectorDisplay.hpp"
 #include "../GUI/QtGUI.hpp"
 
-QVector2D BeerPongUltimateApp::frame2Window(const QVector2D frame_coordinates) const
+QVector2D BeerPongUltimateApp::_frame2window(const QVector2D frame_coordinates) const
 {
    float x = frame_coordinates.x() * (_window_size.height() / float(_frame_size.height()));
    float y = frame_coordinates.y() * (_window_size.width() / float(_frame_size.width()));
@@ -18,10 +20,40 @@ QVector2D BeerPongUltimateApp::frame2Window(const QVector2D frame_coordinates) c
 }
 
 
-int BeerPongUltimateApp::err_msg(const QString& msg)
+int BeerPongUltimateApp::_err_msg(const QString& msg)
 {
    return QMessageBox::critical( &_main_gui, "Error", msg,
                                  QMessageBox::Retry | QMessageBox::Close, QMessageBox::Retry);
+}
+
+
+unsigned long BeerPongUltimateApp::_get_corresponding_id(const QRectF& rect)
+{
+   std::map<float, unsigned long> dist2id;
+   std::transform(std::execution::par_unseq, _circles.begin(), _circles.end(), dist2id.begin(),
+      [](auto const& id2circle)
+      {
+         unsigned long ID = id2circle.first;
+         QRectF* circle = &id2circle.second;
+
+         return std::pair<float, unsigned long>(std::sqrt(pow(circle->x - rect.x, 2) + pow(circle->y - rect.y, 2)), ID);
+      });
+
+   float min_dist = 999999.0;
+   unsigned long min_id = 0;
+   for (auto const& [dist, id] : dist2id)
+   {
+      if (dist < min_dist)
+      {
+         min_dist = dist;
+         min_id = id;
+      }
+   }
+
+   if (min_dist < _r_min)
+      return min_id;
+
+   return -1;
 }
 
 
@@ -43,7 +75,7 @@ int BeerPongUltimateApp::init()
 
    while (!_rgb_cam->openCamera())
    {
-      if (err_msg("La webcam est introuvable.") == QMessageBox::Close)
+      if (_err_msg("La webcam est introuvable.") == QMessageBox::Close)
          exit(0);
    }
 
@@ -53,7 +85,7 @@ int BeerPongUltimateApp::init()
 
    if (_rgb_cam->isFrameEmpty())
    {
-      if (err_msg("Pas d'image reçue de la webcam.") == QMessageBox::Close)
+      if (_err_msg("Pas d'image reçue de la webcam.") == QMessageBox::Close)
          exit(0);
    }
 
@@ -72,7 +104,7 @@ void BeerPongUltimateApp::update_glasses()
 
    if (_rgb_cam->isFrameEmpty())
    {
-      if (err_msg("Pas d'image reçue de la webcam.") == QMessageBox::Close)
+      if (_err_msg("Pas d'image reçue de la webcam.") == QMessageBox::Close)
          exit(0);
    }
 
@@ -85,6 +117,4 @@ void BeerPongUltimateApp::update_glasses()
       {
          // Construire la map en cherchant pour chaque cercle son correspondant dans _circles
       });
-   
-   
 }

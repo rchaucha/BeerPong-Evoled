@@ -2,7 +2,7 @@
 
 #include <opencv2/core/mat.hpp>
 #include <opencv2/core/types.hpp>
-#include <QRectF> 
+#include <QRectF>
 
 class DetectionTools
 {
