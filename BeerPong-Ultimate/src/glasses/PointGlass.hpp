@@ -1,16 +1,14 @@
 #pragma once
 
-#include "Glass.hpp"
+#include "AValueGlass.hpp"
 
-class PointGlass : public Glass
+class PointGlass : public AValueGlass<int>
 {
 public:
-   PointGlass(int points, QPointF position, float radius) :
-      Glass(position, radius), _points(points) {};
+   PointGlass(QPointF position, float radius, int points) :
+      AValueGlass<int>(position, radius, points) {};
 
-   inline int get_points() const noexcept { return _points; }
-
-private:
-   int _points = 0;
+   inline int get_points() const noexcept { return _get_value(); }
+   inline int set_points(int points) noexcept { _set_value(points); }
 };
 
