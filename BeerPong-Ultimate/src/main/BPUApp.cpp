@@ -1,4 +1,4 @@
-#include "BeerPongUltimateApp.hpp"
+#include "BPUApp.hpp"
 
 #include <execution>
 #include <algorithm>
@@ -12,7 +12,8 @@
 #include "../GUI/QtGUI.hpp"
 #include "../gamemodes/GameMode.hpp"
 
-QVector2D BeerPongUltimateApp::_frame2window(const QVector2D frame_coordinates) const
+
+QVector2D BPUApp::_frame2window(const QVector2D frame_coordinates) const
 {
    float x = frame_coordinates.x() * (_window_size.height() / float(_frame_size.height()));
    float y = frame_coordinates.y() * (_window_size.width() / float(_frame_size.width()));
@@ -21,25 +22,36 @@ QVector2D BeerPongUltimateApp::_frame2window(const QVector2D frame_coordinates) 
 }
 
 
-int BeerPongUltimateApp::_err_msg(const QString& msg)
+int BPUApp::_err_msg(const QString& msg)
 {
    return QMessageBox::critical( &_main_gui, "Error", msg,
                                  QMessageBox::Retry | QMessageBox::Close, QMessageBox::Retry);
 }
 
 
-unsigned long BeerPongUltimateApp::_get_corresponding_id(const QRectF& rect)
+unsigned long BPUApp::_get_corresponding_id(const QRectF& rect)
 {
-   std::map<float, unsigned long> dist2id;
+   std::map<const float, unsigned long> dist2id;
+
+   for (auto const& [id, circle]: _circles)
+   {
+      float dist = sqrt(pow(circle.x() - rect.x(), 2) + pow(circle.y() - rect.y(), 2));
+
+      dist2id[dist] = id;
+   }
+
+   /*
    std::transform(std::execution::par_unseq, _circles.begin(), _circles.end(), dist2id.begin(),
       [& rect](auto const& id2circle)
       {
          unsigned long ID = id2circle.first;
-         QRectF* circle = &id2circle.second;
+         const QRectF* circle = &id2circle.second;
 
-         return std::pair<float, unsigned long>(std::sqrt(pow(circle->x - rect.x, 2) + pow(circle->y - rect.y, 2)), ID);
+         float dist = sqrt(pow(circle->x() - rect.x(), 2) + pow(circle->y() - rect.y(), 2));
+
+         return std::make_pair(dist, ID);
       });
-
+      */
    float min_dist = 999999.0;
    unsigned long min_id = 0;
    for (auto const& [dist, id] : dist2id)
@@ -58,7 +70,7 @@ unsigned long BeerPongUltimateApp::_get_corresponding_id(const QRectF& rect)
 }
 
 
-BeerPongUltimateApp::BeerPongUltimateApp(int& argc, char** argv) :
+BPUApp::BPUApp(int& argc, char** argv) :
    QApplication(argc, argv),
    _game_mode(nullptr),
    _rgb_cam(RGBCameraInput::getInstance()),
@@ -71,13 +83,13 @@ BeerPongUltimateApp::BeerPongUltimateApp(int& argc, char** argv) :
 {}
 
 
-BeerPongUltimateApp::~BeerPongUltimateApp()
+BPUApp::~BPUApp()
 {
    close_current_gamemode();
 }
 
 
-int BeerPongUltimateApp::init()
+int BPUApp::init()
 {
    _main_gui.show();
    _main_gui.windowHandle()->setScreen(qApp->screens()[0]);
@@ -93,13 +105,13 @@ int BeerPongUltimateApp::init()
          exit(0);
    }
 
-   // on laisse passer quelques images pour que la camera se stabilise
+   // We miss a few images on purpose to let the webcam stabilize
    for (int i = 0; i < 30; i++)
       _rgb_cam->updateFrame();
 
    if (_rgb_cam->isFrameEmpty())
    {
-      if (_err_msg("Pas d'image reçue de la webcam.") == QMessageBox::Close)
+      if (_err_msg("Impossible d'obtenir l'image de la webcam.") == QMessageBox::Close)
          exit(0);
    }
 
@@ -112,26 +124,26 @@ int BeerPongUltimateApp::init()
 }
 
 
-void BeerPongUltimateApp::launch_gamemode(GameMode* gamemode)
+void BPUApp::launch_gamemode(GameMode* gamemode)
 {
    _game_mode = gamemode;
 }
 
 
-void BeerPongUltimateApp::close_current_gamemode()
+void BPUApp::close_current_gamemode()
 {
    delete _game_mode;
    _game_mode = nullptr;
 }
 
 
-void BeerPongUltimateApp::update_glasses() 
+void BPUApp::update_glasses() 
 {
    _rgb_cam->updateFrame();
 
    if (_rgb_cam->isFrameEmpty())
    {
-      if (_err_msg("Pas d'image reçue de la webcam.") == QMessageBox::Close)
+      if (_err_msg("Impossible d'obtenir l'image de la webcam.") == QMessageBox::Close)
          exit(0);
    }
 

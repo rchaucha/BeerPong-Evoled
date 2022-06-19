@@ -4,17 +4,19 @@
 #include <QVector2D>
 #include <map>
 #include <opencv2/core/types.hpp>
+#include "../gui/ProjectorDisplay.hpp"
+#include "../gui/QtGUI.hpp"
 
 class RGBCameraInput;
 class GameMode;
 
-class BeerPongUltimateApp : public QApplication
+class BPUApp : public QApplication
 {
    Q_OBJECT
 
 public:
-   BeerPongUltimateApp(int& argc, char** argv);
-   ~BeerPongUltimateApp();
+   BPUApp(int& argc, char** argv);
+   ~BPUApp();
 
    int init();
 

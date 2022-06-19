@@ -13,14 +13,16 @@ const std::vector<QColor> GameMode::_boynton_colors = {
       QColor(255, 128, 0),    //Orange
 };
 
-std::vector<const ColoredCircle> GameMode::get_glasses() const
+std::vector<ColoredCircle> GameMode::get_glasses() const
 {
-   std::vector<const ColoredCircle> glasses_vec;
+   std::vector<ColoredCircle> glasses_vec;
 
    for (const auto& glass : _glasses)
    {
-      QRectF rect(glass.second.get_position(), QSizeF(glass.second.get_radius(), glass.second.get_radius()));
-      glasses_vec.push_back(ColoredCircle(rect, glass.second.get_color()));
+      QRectF rect(glass.second->get_position(), QSizeF(glass.second->get_radius(), glass.second->get_radius()));
+      QColor glass_color = _group_color.at(glass.second->get_group_id());
+
+      glasses_vec.push_back(ColoredCircle(rect, glass_color));
    }
 
    return glasses_vec;

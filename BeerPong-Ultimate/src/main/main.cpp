@@ -1,8 +1,8 @@
-#include "BeerPongUltimateApp.cpp"
+#include "BPUApp.hpp"
 
 int main(int argc, char* argv[])
 {
-   BeerPongUltimateApp qt_application(argc, argv);
+   BPUApp qt_application(argc, argv);
    qt_application.init();
 
    return qt_application.exec();

@@ -1,4 +1,4 @@
 #include "AGlass.hpp"
 
-unsigned long AGlass::_goup_id_count = 0;
+unsigned long AGlass::_group_id_count = 0;
 

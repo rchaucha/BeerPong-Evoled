@@ -5,7 +5,7 @@
 #include <algorithm>
 #include <set>
 
-#include "../Glasses/AValueGlass.hpp"
+#include "../Glasses/AGlass.hpp"
 #include "../gui/ColoredCircle.h"
 
 class GameMode
@@ -17,16 +17,22 @@ public:
    void add_player(std::string new_player) { _players.insert(new_player); }
    bool remove_player(std::string player) { return _players.erase(player); }
 
-   std::vector<const ColoredCircle> get_glasses() const;
+   std::vector<ColoredCircle> get_glasses() const;
 
 protected:
-   GameMode() {};
+   GameMode(std::set<std::string>&& players) : _players(std::move(players)) {};
 
    virtual void _assign_new_glasses() = 0;
 
+
+   std::map<unsigned long, std::unique_ptr<AGlass>> _glasses;
+   std::set<std::string> _players;
+
+private: 
+   // The GameMode doesn't need to know about the color management
+   
    //https://stackoverflow.com/questions/470690/how-to-automatically-generate-n-distinct-colors
    static const std::vector<QColor> _boynton_colors;
 
-   std::map<unsigned long, Glass> _glasses;
-   std::set<std::string> _players;
+   std::map<unsigned long, QColor> _group_color;
 };

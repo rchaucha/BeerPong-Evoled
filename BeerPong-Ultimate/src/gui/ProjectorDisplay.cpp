@@ -8,7 +8,7 @@ ProjectorDisplay::ProjectorDisplay(QWidget* parent) :
 }
 
 
-void ProjectorDisplay::update_circles(std::vector<const ColoredCircle>&& circles)
+void ProjectorDisplay::update_circles(std::vector<ColoredCircle>&& circles)
 {
    _circles = std::move(circles);
 
