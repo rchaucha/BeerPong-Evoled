@@ -95,11 +95,7 @@ int BPUApp::init()
    _projector_win.setScreen(qApp->screens()[1]);
    _projector_win.showFullScreen();
 
-   while (!_rgb_cam->openCamera())
-   {
-      if (_err_msg("La webcam est introuvable.") == QMessageBox::Close)
-         exit(0);
-   }
+   open_webcam(0);
 
    // We miss a few images on purpose to let the webcam stabilize
    for (int i = 0; i < 30; i++)
@@ -111,25 +107,12 @@ int BPUApp::init()
          exit(0);
    }
 
-   _frame_area = cv::selectROI(_rgb_cam->getFrame(), false, false);
+   select_roi();
 
    _window_size = _projector_win.size();
    _frame_size = _rgb_cam->getFrameSize();
 
    return 0;
-}
-
-
-void BPUApp::launch_gamemode(GameMode* gamemode)
-{
-   _game_mode = gamemode;
-}
-
-
-void BPUApp::close_current_gamemode()
-{
-   delete _game_mode;
-   _game_mode = nullptr;
 }
 
 
@@ -164,5 +147,34 @@ void BPUApp::update_glasses()
       _game_mode->update_logic(_circles);
       _game_mode->update_view();
       _projector_win.update_circles(_game_mode->get_glasses());
+   }
+}
+
+
+void BPUApp::launch_gamemode(GameMode* gamemode)
+{
+   _game_mode = gamemode;
+}
+
+
+void BPUApp::close_current_gamemode()
+{
+   delete _game_mode;
+   _game_mode = nullptr;
+}
+
+
+void BPUApp::select_roi()
+{
+   _frame_area = cv::selectROI(_rgb_cam->getFrame(), false, false);
+}
+
+
+void BPUApp::open_webcam(int id)
+{
+   while (!_rgb_cam->openCamera(id))
+   {
+      if (_err_msg("La webcam est introuvable.") == QMessageBox::Close)
+         exit(0);
    }
 }

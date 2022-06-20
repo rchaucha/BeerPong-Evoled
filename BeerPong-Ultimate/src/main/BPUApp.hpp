@@ -25,6 +25,7 @@ public slots:
    void launch_gamemode(GameMode* gamemode);
    void close_current_gamemode();
 
+   void select_roi();
    void open_webcam(int id);
 
    void set_r_min(unsigned int r_min) { _r_min = r_min; }
