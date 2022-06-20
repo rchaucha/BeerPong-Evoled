@@ -25,6 +25,8 @@ public slots:
    void launch_gamemode(GameMode* gamemode);
    void close_current_gamemode();
 
+   void open_webcam(int id);
+
    void set_r_min(unsigned int r_min) { _r_min = r_min; }
    void set_r_max(unsigned int r_max) { _r_max = r_max; }
    void set_dist_between_circles(unsigned int dist_between_circles) { _dist_between_circles = dist_between_circles; }

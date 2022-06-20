@@ -12,7 +12,9 @@ public:
 
    static RGBCameraInput* getInstance();
 
-   bool openCamera() { return _cap.open(0); }
+   static std::vector<int> camera
+
+   bool openCamera(int id) { return _cap.open(id); }
 
    bool isFrameEmpty() const { return _current_frame.rows == 0 || _current_frame.cols == 0; }
 
