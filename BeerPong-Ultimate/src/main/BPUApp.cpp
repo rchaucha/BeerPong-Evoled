@@ -40,18 +40,6 @@ unsigned long BPUApp::_get_corresponding_id(const QRectF& rect)
       dist2id[dist] = id;
    }
 
-   /*
-   std::transform(std::execution::par_unseq, _circles.begin(), _circles.end(), dist2id.begin(),
-      [& rect](auto const& id2circle)
-      {
-         unsigned long ID = id2circle.first;
-         const QRectF* circle = &id2circle.second;
-
-         float dist = sqrt(pow(circle->x() - rect.x(), 2) + pow(circle->y() - rect.y(), 2));
-
-         return std::make_pair(dist, ID);
-      });
-      */
    float min_dist = 999999.0;
    unsigned long min_id = 0;
    for (auto const& [dist, id] : dist2id)
@@ -91,12 +79,19 @@ BPUApp::~BPUApp()
 
 int BPUApp::init()
 {
+   while (qApp->screens().size() < 1)
+   {
+      if (_err_msg("Veuillez brancher le projecteur.") == QMessageBox::Close)
+         exit(0);
+   }
+
    _main_gui.show();
-   _main_gui.windowHandle()->setScreen(qApp->screens()[0]);
+   _main_gui.setScreen(qApp->screens()[0]);
 
    _projector_win.setParent(&_main_gui);
    _projector_win.show();
-   _projector_win.windowHandle()->setScreen(qApp->screens()[1]);
+
+   _projector_win.setScreen(qApp->screens()[1]);
    _projector_win.showFullScreen();
 
    while (!_rgb_cam->openCamera())
