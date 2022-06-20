@@ -127,7 +127,7 @@ void BPUApp::update_glasses()
    }
 
    std::vector<QRectF> glasses_rect;
-   DetectionTools::glasses(_rgb_cam->getFrame(), glasses_rect, _r_min, _r_max,
+   DetectionTools::glasses(_rgb_ cam->getFrame(), glasses_rect, _r_min, _r_max,
                            _dist_between_circles, _detection_param1, _detection_param2);
 
    std::vector<QRectF> new_circles;

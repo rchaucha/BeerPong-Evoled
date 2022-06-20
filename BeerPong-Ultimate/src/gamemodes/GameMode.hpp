@@ -5,7 +5,7 @@
 #include <algorithm>
 #include <set>
 
-#include "../Glasses/AGlass.hpp"
+#include "../glasses/AGlass.hpp"
 #include "../gui/ColoredCircle.h"
 
 class GameMode
