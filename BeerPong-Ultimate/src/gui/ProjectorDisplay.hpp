@@ -4,7 +4,7 @@
 #include "ui_QtGUI.h"
 #include <QPainter>
 #include <QColor>
-#include "ColoredCircle.h"
+#include "ColoredCircle.hpp"
 
 class ProjectorDisplay : public QMainWindow
 {

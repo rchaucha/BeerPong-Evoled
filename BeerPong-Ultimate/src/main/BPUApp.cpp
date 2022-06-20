@@ -67,7 +67,9 @@ BPUApp::BPUApp(int& argc, char** argv) :
    _r_max(100),
    _dist_between_circles(0.f),
    _detection_param1(100),
-   _detection_param2(30)
+   _detection_param2(30),
+   _main_gui(),
+   _projector_win(&_main_gui)
 {}
 
 
@@ -88,7 +90,6 @@ int BPUApp::init()
    _main_gui.show();
    _main_gui.setScreen(qApp->screens()[0]);
 
-   _projector_win.setParent(&_main_gui);
    _projector_win.setWindowFlags(Qt::Window);
    _projector_win.show();
 
@@ -127,7 +128,7 @@ void BPUApp::update_glasses()
    }
 
    std::vector<QRectF> glasses_rect;
-   DetectionTools::glasses(_rgb_ cam->getFrame(), glasses_rect, _r_min, _r_max,
+   DetectionTools::glasses(_rgb_cam->getFrame(), glasses_rect, _r_min, _r_max,
                            _dist_between_circles, _detection_param1, _detection_param2);
 
    std::vector<QRectF> new_circles;
