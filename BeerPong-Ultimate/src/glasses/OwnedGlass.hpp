@@ -5,6 +5,7 @@
 
 #include "AValueGlass.hpp"
 
+
 class OwnedGlass : public AValueGlass<std::string>
 {
 public:

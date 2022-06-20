@@ -27,7 +27,7 @@ protected:
    unsigned long new_group_id() noexcept { return _group_id_count++; }
 
 private:
-   static unsigned long _group_id_count;
+   static inline unsigned long _group_id_count = 0;
 
    QPointF _position;
    float _radius;
