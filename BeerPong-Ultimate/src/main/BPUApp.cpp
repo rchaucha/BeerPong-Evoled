@@ -8,8 +8,6 @@
 #include <QMessageBox>
 #include "../Tools/DetectionTools.hpp"
 #include "../Tools/RGBCameraInput.hpp"
-#include "../GUI/ProjectorDisplay.hpp"
-#include "../GUI/QtGUI.hpp"
 #include "../gamemodes/GameMode.hpp"
 
 

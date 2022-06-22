@@ -5,7 +5,7 @@
 #include <map>
 #include <opencv2/core/types.hpp>
 #include "../gui/ProjectorDisplay.hpp"
-#include "../gui/QtGUI.hpp"
+#include "../gui/QtGUI/QtGUI.hpp"
 
 class RGBCameraInput;
 class GameMode;
