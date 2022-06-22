@@ -145,7 +145,11 @@ void BPUApp::update_glasses()
    {
       _game_mode->update_logic(_circles);
       _game_mode->update_view();
-      _projector_win.update_circles(_game_mode->get_glasses());
+      std::vector<CircleInGroup> circles_in_group = _game_mode->get_glasses();   
+      
+      std::transform(std::execution::par_unseq, circles_in_group.begin(), circles_in_group.end(), OUT_rects.begin(), circlesToRect);
+
+      _projector_win.update_circles();
    }
 }
 

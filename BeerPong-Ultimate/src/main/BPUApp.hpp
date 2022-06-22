@@ -2,10 +2,13 @@
 
 #include <QApplication>
 #include <QVector2D>
+#include <QColor>
 #include <map>
 #include <opencv2/core/types.hpp>
 #include "../gui/ProjectorDisplay.hpp"
 #include "../gui/QtGUI/QtGUI.hpp"
+#include "../gui/ColoredCircle.hpp"
+
 
 class RGBCameraInput;
 class GameMode;
@@ -35,6 +38,9 @@ public slots:
    void set_detection_param2(double detection_param2) { _detection_param2 = detection_param2; }
 
 private :
+   //https://stackoverflow.com/questions/470690/how-to-automatically-generate-n-distinct-colors
+   static const std::vector<QColor> _boynton_colors;
+
    QVector2D _frame2window(const QVector2D frame_coordinates) const;
    int _err_msg(const QString& msg);
    unsigned long _get_corresponding_id(const QRectF& rect);
@@ -50,6 +56,8 @@ private :
 
    std::map<unsigned long, QRectF> _circles;
    unsigned long _circles_id_count;
+   
+   std::map<unsigned long, QColor> _group_color;
 
    unsigned int _r_min;
    unsigned int _r_max;

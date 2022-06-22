@@ -22,7 +22,7 @@ void ProjectorDisplay::paintEvent(QPaintEvent* event)
 
    for (const ColoredCircle& circle : _circles)
    {
-      painter.setBrush(circle.get_color());
-      painter.drawEllipse(circle.get_rect());
+      painter.setBrush(circle.color);
+      painter.drawEllipse(circle.rect);
    }
 }

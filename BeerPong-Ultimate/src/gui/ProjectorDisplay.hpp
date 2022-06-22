@@ -1,7 +1,7 @@
 #pragma once
 
-#include <QtWidgets/QMainWindow>
 #include "ui_QtGUI.h"
+#include <QtWidgets/QMainWindow>
 #include <QPainter>
 #include <QColor>
 #include "ColoredCircle.hpp"
