@@ -13,6 +13,7 @@ const std::vector<QColor> GameMode::_boynton_colors = {
       QColor(255, 128, 0),    //Orange
 };
 
+
 std::vector<ColoredCircle> GameMode::get_glasses() const
 {
    std::vector<ColoredCircle> glasses_vec;
