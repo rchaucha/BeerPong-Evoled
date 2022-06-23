@@ -6,7 +6,6 @@
 #include <opencv2/highgui.hpp>
 #include <QWindow>
 #include <QMessageBox>
-#include "../Tools/DetectionTools.hpp"
 #include "../Tools/RGBCameraInput.hpp"
 #include "../gamemodes/GameMode.hpp"
 
@@ -16,11 +15,6 @@ BPUApp::BPUApp(int& argc, char** argv) :
    _game_mode(nullptr),
    _rgb_cam(RGBCameraInput::getInstance()),
    _circles_id_count(0),
-   _r_min(0),
-   _r_max(100),
-   _dist_between_circles(0.f),
-   _detection_param1(100),
-   _detection_param2(30),
    _main_gui(),
    _projector_win(&_main_gui)
 {}
@@ -102,9 +96,9 @@ void BPUApp::update_glasses()
 
       std::vector<ColoredCircle> colored_circles;
       std::transform(std::execution::par_unseq, circles_in_group.begin(), circles_in_group.end(), 
-                     colored_circles.begin(), _group_circle_to_color);
+         colored_circles.begin(), [this](const CircleInGroup &group_circle) { return _group_circle_to_color(group_circle); });
 
-      _projector_win.update_circles(colored_circles);
+      _projector_win.update_circles(std::move(colored_circles));
    }
 }
 
@@ -184,11 +178,11 @@ unsigned long BPUApp::_get_corresponding_id(const QRectF& rect)
 }
 
 
-ColoredCircle BPUApp::_group_circle_to_color(CircleInGroup&& circle_in_group) const
+ColoredCircle BPUApp::_group_circle_to_color(const CircleInGroup& circle_in_group) const
 {
    ColoredCircle colored_circle;
-   colored_circle.rect = std::move(circle_in_group.rect);
-   colored_circle.color = _group_color[circle_in_group.id];
+   colored_circle.rect = circle_in_group.rect;
+   colored_circle.color = _group_color.at(circle_in_group.group_id);
 
    return colored_circle;
 }

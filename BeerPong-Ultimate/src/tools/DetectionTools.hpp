@@ -3,7 +3,6 @@
 #include <opencv2/core/mat.hpp>
 #include <opencv2/core/types.hpp>
 #include <QRectF>
-#include <QRectF>
 
 class DetectionTools
 {
@@ -16,7 +15,7 @@ public:
 
    void set_r_min(unsigned int r_min) { _r_min = r_min;}
    void set_r_max(unsigned int r_max) { _r_max = _max(r_max, _r_min);}
-   void set_dist_between_circles(float dist_between_circles) { _dist_between_circles = _max(0, dist_between_circles); }
+   void set_dist_between_circles(float dist_between_circles) { _dist_between_circles = _max(0.f, dist_between_circles); }
    void set_param1(double param1) { _param1 = param1; }
    void set_param2(double param2) { _param2 = param2; }
 

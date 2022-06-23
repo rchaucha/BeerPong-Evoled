@@ -7,10 +7,13 @@ std::vector<CircleInGroup> GameMode::get_glasses() const
 
    for (const auto& glass : _glasses)
    {
-      QRectF rect(glass.second->get_position(), QSizeF(glass.second->get_radius(), glass.second->get_radius()));
-      unsigned long group_id = glass.second->get_group_id();
+      CircleInGroup circle_in_group;
 
-      glasses_vec.push_back(CircleInGroup(group_id, rect));
+      circle_in_group.rect = QRectF(glass.second->get_position(),
+                                    QSizeF(glass.second->get_radius(), glass.second->get_radius()));
+      circle_in_group.group_id = glass.second->get_group_id();
+
+      glasses_vec.push_back(circle_in_group);
    }
 
    return glasses_vec;

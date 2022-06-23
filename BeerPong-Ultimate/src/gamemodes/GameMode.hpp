@@ -32,7 +32,6 @@ public:
 
 protected:
    GameMode() = default; 
-   _points(std::move(points)) {};
 
    virtual void _assign_new_glasses() = 0;
 

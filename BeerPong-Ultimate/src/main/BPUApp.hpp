@@ -5,6 +5,7 @@
 #include <QColor>
 #include <map>
 #include <opencv2/core/types.hpp>
+#include "../Tools/DetectionTools.hpp"
 #include "../gui/ProjectorDisplay.hpp"
 #include "../gui/QtGUI/QtGUI.hpp"
 #include "../gui/ColoredCircle.hpp"
@@ -32,7 +33,7 @@ public slots:
    void select_roi();
    void open_webcam(int id);
 
-   void set_r_min(unsigned int r_min) { _detection_tool.set_r_min(r_min); }
+   void set_r_min(unsigned int r_min) { _r_min = r_min; _detection_tool.set_r_min(r_min); }
    void set_r_max(unsigned int r_max) { _detection_tool.set_r_max(r_max);; }
    void set_dist_between_circles(unsigned int dist_between_circles) { _detection_tool.set_dist_between_circles(dist_between_circles); }
    void set_detection_param1(double detection_param1) { _detection_tool.set_param1(detection_param1); }
@@ -57,8 +58,10 @@ private :
 
    std::map<unsigned long, QRectF> _circles;
    unsigned long _circles_id_count;
+
+   unsigned long _r_min = 0;
    
-   ColoredCircle _group_circle_to_color(CircleInGroup&& circle_in_group) const;
+   ColoredCircle _group_circle_to_color(const CircleInGroup& circle_in_group) const;
    std::map<unsigned long, QColor> _group_color;
 
    DetectionTools _detection_tool;

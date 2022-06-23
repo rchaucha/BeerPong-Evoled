@@ -6,7 +6,7 @@
 #include "opencv2/imgproc.hpp"
 
 
-DetectionTools(unsigned int r_min, unsigned int r_max, float dist_between_circles, 
+DetectionTools::DetectionTools(unsigned int r_min, unsigned int r_max, float dist_between_circles,
                   double param1, double param2) :
    _r_min(r_min),
    _r_max(r_max),
@@ -28,7 +28,7 @@ QRectF circlesToRect(cv::Vec3f c)
 
 
 // Detect glasses in the image src
-void DetectionTools::glasses( const cv::Mat src, )
+std::vector<QRectF> DetectionTools::detect_glasses(const cv::Mat src)
 {
    std::vector<QRectF> OUT_rects;
 
@@ -40,8 +40,8 @@ void DetectionTools::glasses( const cv::Mat src, )
 
    medianBlur(gray, gray, 5);
 
-   if (dist_between_circles <= 0)
-      dist_between_circles = gray.rows / 9.0;
+   if (_dist_between_circles <= 0)
+      _dist_between_circles = gray.rows / 9.0;
 
    std::vector<cv::Vec3f> circles;
    HoughCircles(gray, circles, cv::HOUGH_GRADIENT, 1,
@@ -50,7 +50,8 @@ void DetectionTools::glasses( const cv::Mat src, )
 
    OUT_rects.resize(circles.size());
 
-   std::transform(std::execution::par_unseq, circles.begin(), circles.end(), OUT_rects.begin(), circlesToRect);
+   std::transform(std::execution::par_unseq, circles.begin(), circles.end(), 
+                  OUT_rects.begin(), circlesToRect);
 
    return OUT_rects;
 }
