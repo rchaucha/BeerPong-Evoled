@@ -10,7 +10,7 @@
 
 struct CircleInGroup
 {
-   unsigned long id;
+   unsigned long group_id;
    QRectF rect;
 };
 
