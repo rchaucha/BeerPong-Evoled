@@ -101,10 +101,12 @@ void BPUApp::update_glasses()
       _game_mode->update_logic(_circles);
       _game_mode->update_view();
       std::vector<CircleInGroup> circles_in_group = _game_mode->get_glasses();   
-      
-      std::transform(std::execution::par_unseq, circles_in_group.begin(), circles_in_group.end(), OUT_rects.begin(), circlesToRect);
 
-      _projector_win.update_circles();
+      std::vector<ColoredCircle> colored_circles;
+      std::transform(std::execution::par_unseq, circles_in_group.begin(), circles_in_group.end(), 
+                     colored_circles.begin(), _group_circle_to_color);
+
+      _projector_win.update_circles(colored_circles);
    }
 }
 
@@ -154,6 +156,7 @@ int BPUApp::_err_msg(const QString& msg)
 }
 
 
+// Returns the id of the corresponding glass on the previous frame
 unsigned long BPUApp::_get_corresponding_id(const QRectF& rect)
 {
    std::map<const float, unsigned long> dist2id;
