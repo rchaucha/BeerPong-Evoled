@@ -11,51 +11,6 @@
 #include "../gamemodes/GameMode.hpp"
 
 
-QVector2D BPUApp::_frame2window(const QVector2D frame_coordinates) const
-{
-   float x = frame_coordinates.x() * (_window_size.height() / float(_frame_size.height()));
-   float y = frame_coordinates.y() * (_window_size.width() / float(_frame_size.width()));
-
-   return QVector2D(x, y);
-}
-
-
-int BPUApp::_err_msg(const QString& msg)
-{
-   return QMessageBox::critical( &_main_gui, "Error", msg,
-                                 QMessageBox::Retry | QMessageBox::Close, QMessageBox::Retry);
-}
-
-
-unsigned long BPUApp::_get_corresponding_id(const QRectF& rect)
-{
-   std::map<const float, unsigned long> dist2id;
-
-   for (auto const& [id, circle]: _circles)
-   {
-      float dist = sqrt(pow(circle.x() - rect.x(), 2) + pow(circle.y() - rect.y(), 2));
-
-      dist2id[dist] = id;
-   }
-
-   float min_dist = 999999.0;
-   unsigned long min_id = 0;
-   for (auto const& [dist, id] : dist2id)
-   {
-      if (dist < min_dist)
-      {
-         min_dist = dist;
-         min_id = id;
-      }
-   }
-
-   if (min_dist < _r_min)
-      return min_id;
-
-   return -1;
-}
-
-
 BPUApp::BPUApp(int& argc, char** argv) :
    QApplication(argc, argv),
    _game_mode(nullptr),
@@ -180,4 +135,59 @@ void BPUApp::open_webcam(int id)
       if (_err_msg("La webcam est introuvable.") == QMessageBox::Close)
          exit(0);
    }
+}
+
+
+QVector2D BPUApp::_frame2window(const QVector2D frame_coordinates) const
+{
+   float x = frame_coordinates.x() * (_window_size.height() / float(_frame_size.height()));
+   float y = frame_coordinates.y() * (_window_size.width() / float(_frame_size.width()));
+
+   return QVector2D(x, y);
+}
+
+
+int BPUApp::_err_msg(const QString& msg)
+{
+   return QMessageBox::critical(&_main_gui, "Error", msg,
+      QMessageBox::Retry | QMessageBox::Close, QMessageBox::Retry);
+}
+
+
+unsigned long BPUApp::_get_corresponding_id(const QRectF& rect)
+{
+   std::map<const float, unsigned long> dist2id;
+
+   for (auto const& [id, circle] : _circles)
+   {
+      float dist = sqrt(pow(circle.x() - rect.x(), 2) + pow(circle.y() - rect.y(), 2));
+
+      dist2id[dist] = id;
+   }
+
+   float min_dist = 999999.0;
+   unsigned long min_id = 0;
+   for (auto const& [dist, id] : dist2id)
+   {
+      if (dist < min_dist)
+      {
+         min_dist = dist;
+         min_id = id;
+      }
+   }
+
+   if (min_dist < _r_min)
+      return min_id;
+
+   return -1;
+}
+
+
+ColoredCircle BPUApp::_group_circle_to_color(CircleInGroup&& circle_in_group) const
+{
+   ColoredCircle colored_circle;
+   colored_circle.rect = std::move(circle_in_group.rect);
+   colored_circle.color = _group_color[circle_in_group.id];
+
+   return colored_circle;
 }

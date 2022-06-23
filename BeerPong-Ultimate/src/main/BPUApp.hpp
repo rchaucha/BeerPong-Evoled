@@ -12,6 +12,7 @@
 
 class RGBCameraInput;
 class GameMode;
+class CircleInGroup;
 
 class BPUApp : public QApplication
 {
@@ -57,6 +58,7 @@ private :
    std::map<unsigned long, QRectF> _circles;
    unsigned long _circles_id_count;
    
+   ColoredCircle _group_circle_to_color(CircleInGroup&& circle_in_group) const;
    std::map<unsigned long, QColor> _group_color;
 
    unsigned int _r_min;
