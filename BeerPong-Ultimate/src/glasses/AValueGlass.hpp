@@ -7,12 +7,11 @@ template <class T_value>
 class AValueGlass : public AGlass
 {
 public:
-
-   virtual unsigned long get_group_id() const noexcept { return _value2group_id[_glass_value]; }
+   virtual GroupID get_group_id() const noexcept { return _value2group_id[_glass_value]; }
 
 protected:
    AValueGlass(QPointF position, float radius, const T_value& value):
-      AGlass(position, radius) 
+      AGlass(position, radius)
    { _set_value(value); }
 
    inline T_value _get_value() const noexcept { return _glass_value; }
@@ -29,5 +28,5 @@ private:
    // Can be a number of points, an owner,...
    T_value _glass_value;
 
-   static inline std::map<T_value, unsigned long> _value2group_id;
+   static inline std::map<T_value, GroupID> _value2group_id;
 };

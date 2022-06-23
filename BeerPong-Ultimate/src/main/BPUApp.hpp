@@ -9,6 +9,7 @@
 #include "../gui/ProjectorDisplay.hpp"
 #include "../gui/QtGUI/QtGUI.hpp"
 #include "../gui/ColoredCircle.hpp"
+#include "../gamemodes/GameMode.hpp"
 
 
 class RGBCameraInput;
@@ -56,8 +57,8 @@ private :
    QSize _window_size, _frame_size;
    RGBCameraInput* _rgb_cam;
 
-   std::map<unsigned long, QRectF> _circles;
-   unsigned long _circles_id_count;
+   std::map<GlassID, QRectF> _circles;
+   GlassID _circles_id_count;
 
    unsigned long _r_min = 0;
    

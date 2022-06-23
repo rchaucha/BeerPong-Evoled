@@ -5,12 +5,14 @@
 #include <map>
 
 
+typedef unsigned long GroupID;
+
 class AGlass
 {
 public:
    virtual ~AGlass() {}
 
-   virtual unsigned long get_group_id() const noexcept = 0;
+   virtual GroupID get_group_id() const noexcept = 0;
 
    inline QPointF get_position() const noexcept { return _position; }
    inline float get_radius() const noexcept { return _radius; }
@@ -24,10 +26,10 @@ protected:
 
    AGlass(const AGlass& orig) = delete;
 
-   unsigned long new_group_id() noexcept { return _group_id_count++; }
+   GroupID new_group_id() noexcept { return _group_id_count++; }
 
 private:
-   static inline unsigned long _group_id_count = 0;
+   static inline GroupID _group_id_count = 0;
 
    QPointF _position;
    float _radius;

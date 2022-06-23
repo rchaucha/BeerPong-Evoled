@@ -5,7 +5,7 @@
 #include "../Glasses/OwnedGlass.hpp"
 
 
-void RandomGM::update_logic(std::map<unsigned long, QRectF>& circles)
+void RandomGM::update_logic(std::map<GlassID, QRectF>& circles)
 {
    for (const auto& [id, rect] : circles)
    {

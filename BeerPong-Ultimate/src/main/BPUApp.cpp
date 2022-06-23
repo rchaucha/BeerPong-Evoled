@@ -3,18 +3,18 @@
 #include <execution>
 #include <algorithm>
 #include <cmath>
+#include <limits>
 #include <opencv2/highgui.hpp>
 #include <QWindow>
 #include <QMessageBox>
 #include "../Tools/RGBCameraInput.hpp"
-#include "../gamemodes/GameMode.hpp"
 
 
 BPUApp::BPUApp(int& argc, char** argv) :
    QApplication(argc, argv),
-   _game_mode(nullptr),
    _rgb_cam(RGBCameraInput::getInstance()),
    _circles_id_count(0),
+   _game_mode(nullptr),
    _main_gui(),
    _projector_win(&_main_gui)
 {}
@@ -79,7 +79,7 @@ void BPUApp::update_glasses()
    std::vector<QRectF> new_circles;
    for (const QRectF& rect : glasses_rect)
    {
-      auto id = _get_corresponding_id(rect);
+      GlassID id = _get_corresponding_id(rect);
 
       // If the circle doesn't match any of the old ones, we create a new id for it
       if (id == -1)
@@ -149,9 +149,9 @@ int BPUApp::_err_msg(const QString& msg)
 
 
 // Returns the id of the corresponding glass on the previous frame
-unsigned long BPUApp::_get_corresponding_id(const QRectF& rect)
+GlassID BPUApp::_get_corresponding_id(const QRectF& rect)
 {
-   std::map<const float, unsigned long> dist2id;
+   std::map<const float, GlassID> dist2id;
 
    for (auto const& [id, circle] : _circles)
    {
@@ -160,8 +160,8 @@ unsigned long BPUApp::_get_corresponding_id(const QRectF& rect)
       dist2id[dist] = id;
    }
 
-   float min_dist = 999999.0;
-   unsigned long min_id = 0;
+   float min_dist = std::numeric_limits<float>::max();
+   GlassID min_id = 0;
    for (auto const& [dist, id] : dist2id)
    {
       if (dist < min_dist)
