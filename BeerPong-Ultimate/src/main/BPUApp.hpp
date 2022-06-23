@@ -32,11 +32,11 @@ public slots:
    void select_roi();
    void open_webcam(int id);
 
-   void set_r_min(unsigned int r_min) { _r_min = r_min; }
-   void set_r_max(unsigned int r_max) { _r_max = r_max; }
-   void set_dist_between_circles(unsigned int dist_between_circles) { _dist_between_circles = dist_between_circles; }
-   void set_detection_param1(double detection_param1) { _detection_param1 = detection_param1; }
-   void set_detection_param2(double detection_param2) { _detection_param2 = detection_param2; }
+   void set_r_min(unsigned int r_min) { _detection_tool.set_r_min(r_min); }
+   void set_r_max(unsigned int r_max) { _detection_tool.set_r_max(r_max);; }
+   void set_dist_between_circles(unsigned int dist_between_circles) { _detection_tool.set_dist_between_circles(dist_between_circles); }
+   void set_detection_param1(double detection_param1) { _detection_tool.set_param1(detection_param1); }
+   void set_detection_param2(double detection_param2) { _detection_tool.set_param2(detection_param2); }
 
 private :
    //https://stackoverflow.com/questions/470690/how-to-automatically-generate-n-distinct-colors
@@ -61,10 +61,6 @@ private :
    ColoredCircle _group_circle_to_color(CircleInGroup&& circle_in_group) const;
    std::map<unsigned long, QColor> _group_color;
 
-   unsigned int _r_min;
-   unsigned int _r_max;
-   float _dist_between_circles;
-   double _detection_param1;
-   double _detection_param2;
+   DetectionTools _detection_tool;
 };
 
