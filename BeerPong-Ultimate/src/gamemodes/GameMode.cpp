@@ -3,7 +3,7 @@
 
 std::vector<CircleInGroup> GameMode::get_glasses() const
 {
-   std::vector<ColoredCircle> glasses_vec;
+   std::vector<CircleInGroup> glasses_vec;
 
    for (const auto& glass : _glasses)
    {

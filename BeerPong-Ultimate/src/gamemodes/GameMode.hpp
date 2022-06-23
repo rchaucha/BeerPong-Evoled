@@ -4,6 +4,7 @@
 #include <map>
 #include <algorithm>
 #include <set>
+#include <QRectF>
 
 #include "../glasses/AGlass.hpp"
 
