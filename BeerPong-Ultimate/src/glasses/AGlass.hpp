@@ -4,8 +4,8 @@
 #include <QPointF>
 #include <map>
 
+#include "GlassGroupIDManager.hpp"
 
-typedef unsigned long GroupID;
 
 class AGlass
 {
@@ -26,11 +26,7 @@ protected:
 
    AGlass(const AGlass& orig) = delete;
 
-   GroupID new_group_id() noexcept { return _group_id_count++; }
-
 private:
-   static inline GroupID _group_id_count = 0;
-
    QPointF _position;
    float _radius;
 };

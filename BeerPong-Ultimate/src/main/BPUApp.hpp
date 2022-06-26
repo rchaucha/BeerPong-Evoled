@@ -46,7 +46,7 @@ private :
 
    QVector2D _frame2window(const QVector2D frame_coordinates) const;
    int _err_msg(const QString& msg);
-   unsigned long _get_corresponding_id(const QRectF& rect);
+   GlassID _get_corresponding_id(const QRectF& rect);
 
    QtGUI _main_gui;
    ProjectorDisplay _projector_win;
@@ -63,7 +63,7 @@ private :
    unsigned long _r_min = 0;
    
    ColoredCircle _group_circle_to_color(const CircleInGroup& circle_in_group) const;
-   std::map<unsigned long, QColor> _group_color;
+   std::map<GroupID, QColor> _group_color;
 
    DetectionTools _detection_tool;
 };

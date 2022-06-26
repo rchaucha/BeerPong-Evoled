@@ -13,7 +13,7 @@ typedef unsigned long GlassID;
 
 struct CircleInGroup
 {
-   unsigned long group_id = 0;
+   GroupID group_id = 0;
    QRectF rect;
 };
 
@@ -33,11 +33,13 @@ public:
    std::vector<CircleInGroup> get_glasses() const;
 
 protected:
-   GameMode() = default; 
+   GameMode() = default;
 
    virtual void _assign_new_glasses() = 0;
 
    std::map<GlassID, std::unique_ptr<AGlass>> _glasses;
    std::set<std::string> _players;
    std::set<int> _points;
+
+   GlassGroupIDManager* _group_id_manager;
 };
