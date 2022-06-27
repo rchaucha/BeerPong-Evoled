@@ -23,5 +23,5 @@ private:
    // Can be a number of points, an owner,...
    T_value _glass_value;
 
-   GlassGroupIDManager* _group_id_manager;
+   GlassGroupIDManager _group_id_manager;
 };
