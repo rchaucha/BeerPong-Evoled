@@ -6,20 +6,676 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>718</width>
-    <height>646</height>
+    <width>720</width>
+    <height>634</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>BeerPong : Ultimate</string>
   </property>
-  <widget class="QWidget" name="centralWidget"/>
+  <widget class="QWidget" name="centralWidget">
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <property name="sizeConstraint">
+     <enum>QLayout::SetMinimumSize</enum>
+    </property>
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <property name="spacing">
+       <number>0</number>
+      </property>
+      <property name="sizeConstraint">
+       <enum>QLayout::SetDefaultConstraint</enum>
+      </property>
+      <item>
+       <spacer name="horizontalSpacer">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeType">
+         <enum>QSizePolicy::Expanding</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <widget class="QPushButton" name="b_settings">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="layoutDirection">
+         <enum>Qt::LeftToRight</enum>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset>
+          <normaloff>../../../../files/icon/settings.ico</normaloff>../../../../files/icon/settings.ico</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>32</width>
+          <height>32</height>
+         </size>
+        </property>
+        <property name="checkable">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <widget class="QLabel" name="label">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="font">
+       <font>
+        <family>Calibri</family>
+        <pointsize>12</pointsize>
+       </font>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::NoFrame</enum>
+      </property>
+      <property name="text">
+       <string>Sélectionnez le mode de jeu souhaité :</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout_2">
+      <property name="leftMargin">
+       <number>20</number>
+      </property>
+      <property name="rightMargin">
+       <number>0</number>
+      </property>
+      <item>
+       <widget class="QComboBox" name="gm_selection">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer name="horizontalSpacer_2">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <widget class="QScrollArea" name="gm_description">
+      <property name="frameShadow">
+       <enum>QFrame::Plain</enum>
+      </property>
+      <property name="widgetResizable">
+       <bool>true</bool>
+      </property>
+      <widget class="QWidget" name="scrollAreaWidgetContents">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>683</width>
+         <height>646</height>
+        </rect>
+       </property>
+       <layout class="QVBoxLayout" name="verticalLayout_2">
+        <item>
+         <widget class="QLabel" name="label_2">
+          <property name="font">
+           <font>
+            <pointsize>11</pointsize>
+           </font>
+          </property>
+          <property name="frameShape">
+           <enum>QFrame::NoFrame</enum>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Plain</enum>
+          </property>
+          <property name="lineWidth">
+           <number>5</number>
+          </property>
+          <property name="text">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;TextLabel&lt;a name=&quot;lipsum&quot;/&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus et erat dapibus, fermentum orci vel, fringilla mauris. Vivamus ac dapibus dolor. Maecenas at dolor pretium est gravida vulputate. Vestibulum sodales sem nunc, id aliquam ipsum pharetra aliquet. Duis at blandit nisi, ac sollicitudin elit. Aliquam ac velit sodales, fermentum orci vitae, rhoncus purus. Vestibulum condimentum molestie orci, eu euismod tortor varius sit amet. Etiam non augue sodales, finibus quam et, accumsan sapien. Praesent sapien odio, dignissim ac lectus ac, dapibus tempus odio. Ut viverra iaculis nisi a volutpat. Sed commodo vehicula nibh. Nulla maximus porttitor nibh sed lacinia. Interdum et malesuada fames ac ante ipsum primis in faucibus. Sed in eleifend velit, ut semper velit. Nulla in ex vel felis ultrices viverra. &lt;/p&gt;&lt;p&gt;Pellentesque laoreet ac leo nec volutpat. Aenean in cursus sapien. Pellentesque non consectetur ligula. In blandit malesuada ultrices. In varius laoreet leo, vitae vestibulum ipsum consectetur quis. In pharetra tortor libero, vitae gravida mi fringilla sed. Ut vitae nibh id turpis hendrerit vehicula ultrices eget nibh. Curabitur lobortis pulvinar justo, rhoncus porta urna faucibus et. Etiam nibh augue, vulputate eu fringilla et, semper molestie justo. &lt;/p&gt;&lt;p&gt;Nullam sapien dui, gravida in commodo at, convallis a tellus. Etiam sodales ultricies est porttitor egestas. Sed tempor rutrum tempor. Etiam et tortor ligula. Sed sapien est, lobortis non porta sit amet, tempor nec urna. Aenean metus ex, feugiat vel condimentum consectetur, imperdiet in risus. Sed nec pellentesque elit. Vivamus sagittis ultrices tincidunt. Morbi rutrum arcu arcu, nec eleifend ex rhoncus ut. Etiam lacinia fringilla mattis. Maecenas sed elementum nisl. Sed dapibus porta tempus. Nam maximus scelerisque convallis. &lt;/p&gt;&lt;p&gt;Suspendisse placerat aliquet tortor, ac lacinia metus viverra at. In feugiat et sem eget tempus. Sed eget gravida eros. Integer dolor nibh, mattis id vulputate ac, auctor in turpis. Aliquam non eros quis elit interdum pharetra. In hac habitasse platea dictumst. Fusce mollis turpis eget ipsum bibendum, id sodales lorem suscipit. &lt;/p&gt;&lt;p&gt;Etiam eleifend metus imperdiet, interdum turpis quis, dictum diam. Etiam at dictum lacus, non eleifend neque. Maecenas sit amet maximus ipsum, in accumsan leo. Mauris sit amet sapien imperdiet, eleifend metus id, egestas mi. Praesent vehicula nisl quis nisi tincidunt, quis porta dui tempus. Vivamus id efficitur risus. Curabitur quis condimentum lectus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+          <property name="textFormat">
+           <enum>Qt::RichText</enum>
+          </property>
+          <property name="wordWrap">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </item>
+    <item>
+     <widget class="QTabWidget" name="player_points_tabs">
+      <property name="currentIndex">
+       <number>1</number>
+      </property>
+      <widget class="QWidget" name="player_tab">
+       <attribute name="title">
+        <string>Joueurs</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout_4">
+        <item>
+         <widget class="QLabel" name="label_3">
+          <property name="text">
+           <string>Ajouter un joueur :</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_6" stretch="3,1,0,0,0">
+          <property name="leftMargin">
+           <number>12</number>
+          </property>
+          <item>
+           <widget class="QLineEdit" name="name_text_edit">
+            <property name="placeholderText">
+             <string>Nom</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="horizontalSpacer_3">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QLabel" name="label_4">
+            <property name="text">
+             <string>Couleur :</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QFrame" name="frame_2">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="frameShape">
+             <enum>QFrame::StyledPanel</enum>
+            </property>
+            <property name="frameShadow">
+             <enum>QFrame::Sunken</enum>
+            </property>
+            <property name="lineWidth">
+             <number>3</number>
+            </property>
+            <layout class="QHBoxLayout" name="horizontalLayout_5">
+             <property name="leftMargin">
+              <number>3</number>
+             </property>
+             <property name="topMargin">
+              <number>3</number>
+             </property>
+             <property name="rightMargin">
+              <number>3</number>
+             </property>
+             <property name="bottomMargin">
+              <number>3</number>
+             </property>
+             <item>
+              <widget class="QToolButton" name="b_color0_2">
+               <property name="text">
+                <string>...</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QToolButton" name="b_color1_2">
+               <property name="text">
+                <string>...</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QToolButton" name="b_color2_2">
+               <property name="text">
+                <string>...</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QToolButton" name="b_color3_2">
+               <property name="text">
+                <string>...</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QToolButton" name="b_color4_2">
+               <property name="text">
+                <string>...</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QToolButton" name="b_color5_2">
+               <property name="text">
+                <string>...</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QToolButton" name="b_color6_2">
+               <property name="text">
+                <string>...</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QToolButton" name="b_color7_2">
+               <property name="text">
+                <string>...</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QToolButton" name="b_color8_2">
+               <property name="text">
+                <string>...</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="Line" name="line_2">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="lineWidth">
+                <number>3</number>
+               </property>
+               <property name="orientation">
+                <enum>Qt::Vertical</enum>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QToolButton" name="b_custom_color_2">
+               <property name="text">
+                <string>...</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="b_add_player">
+            <property name="text">
+             <string>Ajouter</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <widget class="QTableWidget" name="player_table">
+          <attribute name="horizontalHeaderVisible">
+           <bool>false</bool>
+          </attribute>
+          <attribute name="verticalHeaderVisible">
+           <bool>true</bool>
+          </attribute>
+          <row>
+           <property name="text">
+            <string/>
+           </property>
+          </row>
+          <row>
+           <property name="text">
+            <string/>
+           </property>
+          </row>
+          <row>
+           <property name="text">
+            <string/>
+           </property>
+          </row>
+          <row>
+           <property name="text">
+            <string/>
+           </property>
+          </row>
+          <column>
+           <property name="text">
+            <string>suppr</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>name</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>color</string>
+           </property>
+          </column>
+          <item row="0" column="1">
+           <property name="text">
+            <string>Rémi</string>
+           </property>
+          </item>
+          <item row="1" column="1">
+           <property name="text">
+            <string>Nico</string>
+           </property>
+          </item>
+          <item row="2" column="1">
+           <property name="text">
+            <string>Pierre</string>
+           </property>
+          </item>
+          <item row="3" column="1">
+           <property name="text">
+            <string>Benjamin</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="points_tab">
+       <attribute name="title">
+        <string>Verres à points</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout_3">
+        <item>
+         <widget class="QLabel" name="label_5">
+          <property name="text">
+           <string>Ajouter un type de verre :</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_4">
+          <property name="leftMargin">
+           <number>12</number>
+          </property>
+          <item>
+           <widget class="QLabel" name="label_7">
+            <property name="text">
+             <string>Nombre de points :</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QSpinBox" name="points_value"/>
+          </item>
+          <item>
+           <widget class="QLabel" name="label_6">
+            <property name="text">
+             <string>Couleur :</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QFrame" name="frame">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="frameShape">
+             <enum>QFrame::StyledPanel</enum>
+            </property>
+            <property name="frameShadow">
+             <enum>QFrame::Sunken</enum>
+            </property>
+            <property name="lineWidth">
+             <number>3</number>
+            </property>
+            <layout class="QHBoxLayout" name="horizontalLayout_3">
+             <property name="sizeConstraint">
+              <enum>QLayout::SetDefaultConstraint</enum>
+             </property>
+             <property name="leftMargin">
+              <number>3</number>
+             </property>
+             <property name="topMargin">
+              <number>3</number>
+             </property>
+             <property name="rightMargin">
+              <number>3</number>
+             </property>
+             <property name="bottomMargin">
+              <number>3</number>
+             </property>
+             <item>
+              <widget class="QToolButton" name="b_color0">
+               <property name="text">
+                <string>...</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QToolButton" name="b_color1">
+               <property name="text">
+                <string>...</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QToolButton" name="b_color2">
+               <property name="text">
+                <string>...</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QToolButton" name="b_color3">
+               <property name="text">
+                <string>...</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QToolButton" name="b_color4">
+               <property name="text">
+                <string>...</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QToolButton" name="b_color5">
+               <property name="text">
+                <string>...</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QToolButton" name="b_color6">
+               <property name="text">
+                <string>...</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QToolButton" name="b_color7">
+               <property name="text">
+                <string>...</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QToolButton" name="b_color8">
+               <property name="text">
+                <string>...</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="Line" name="line">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="lineWidth">
+                <number>3</number>
+               </property>
+               <property name="orientation">
+                <enum>Qt::Vertical</enum>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QToolButton" name="b_custom_color">
+               <property name="text">
+                <string>...</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="b_add_points">
+            <property name="text">
+             <string>Ajouter</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <widget class="QTableWidget" name="points_table">
+          <attribute name="horizontalHeaderVisible">
+           <bool>false</bool>
+          </attribute>
+          <attribute name="verticalHeaderVisible">
+           <bool>true</bool>
+          </attribute>
+          <row>
+           <property name="text">
+            <string/>
+           </property>
+          </row>
+          <row>
+           <property name="text">
+            <string/>
+           </property>
+          </row>
+          <row>
+           <property name="text">
+            <string/>
+           </property>
+          </row>
+          <row>
+           <property name="text">
+            <string/>
+           </property>
+          </row>
+          <column>
+           <property name="text">
+            <string>suppr</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>name</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>color</string>
+           </property>
+          </column>
+          <item row="0" column="1">
+           <property name="text">
+            <string>Rémi</string>
+           </property>
+          </item>
+          <item row="1" column="1">
+           <property name="text">
+            <string>Nico</string>
+           </property>
+          </item>
+          <item row="2" column="1">
+           <property name="text">
+            <string>Pierre</string>
+           </property>
+          </item>
+          <item row="3" column="1">
+           <property name="text">
+            <string>Benjamin</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="b_play">
+      <property name="text">
+       <string>Jouer</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>718</width>
+     <width>720</width>
      <height>22</height>
     </rect>
    </property>
