@@ -10,7 +10,7 @@
 #include "../Tools/RGBCameraInput.hpp"
 
 
-const std::vector<QColor> GameMode::_colors = {
+const std::vector<QColor> BPUApp::_colors = {
       QColor(255, 255, 255),    // White
       QColor(  0, 191, 255),    // Blue
       QColor(255,   0,   0),    // Red

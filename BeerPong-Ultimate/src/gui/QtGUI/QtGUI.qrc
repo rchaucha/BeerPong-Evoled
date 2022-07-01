@@ -1,4 +1,16 @@
 <RCC>
-    <qresource prefix="QtGUI">
+    <qresource prefix="/QtGUI">
+        <file>files/blue.ico</file>
+        <file>files/brown.ico</file>
+        <file>files/gray.ico</file>
+        <file>files/green.ico</file>
+        <file>files/icon.ico</file>
+        <file>files/orange.ico</file>
+        <file>files/pink.ico</file>
+        <file>files/plus.ico</file>
+        <file>files/red.ico</file>
+        <file>files/settings.ico</file>
+        <file>files/white.ico</file>
+        <file>files/yellow.ico</file>
     </qresource>
 </RCC>

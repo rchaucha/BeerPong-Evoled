@@ -6,12 +6,22 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>720</width>
-    <height>634</height>
+    <width>674</width>
+    <height>573</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>BeerPong : Ultimate</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="QtGUI.qrc">
+    <normaloff>:/QtGUI/files/icon.ico</normaloff>:/QtGUI/files/icon.ico</iconset>
+  </property>
+  <property name="iconSize">
+   <size>
+    <width>32</width>
+    <height>32</height>
+   </size>
   </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QVBoxLayout" name="verticalLayout">
@@ -26,6 +36,31 @@
       <property name="sizeConstraint">
        <enum>QLayout::SetDefaultConstraint</enum>
       </property>
+      <item>
+       <widget class="QLabel" name="label">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="font">
+         <font>
+          <family>Calibri</family>
+          <pointsize>12</pointsize>
+         </font>
+        </property>
+        <property name="frameShape">
+         <enum>QFrame::NoFrame</enum>
+        </property>
+        <property name="text">
+         <string>Sélectionnez le mode de jeu souhaité :</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+        </property>
+       </widget>
+      </item>
       <item>
        <spacer name="horizontalSpacer">
         <property name="orientation">
@@ -43,63 +78,32 @@
        </spacer>
       </item>
       <item>
-       <widget class="QPushButton" name="b_settings">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="layoutDirection">
-         <enum>Qt::LeftToRight</enum>
+       <widget class="QToolButton" name="toolButton">
+        <property name="minimumSize">
+         <size>
+          <width>30</width>
+          <height>30</height>
+         </size>
         </property>
         <property name="text">
-         <string/>
+         <string>...</string>
         </property>
         <property name="icon">
-         <iconset>
-          <normaloff>../../../../files/icon/settings.ico</normaloff>../../../../files/icon/settings.ico</iconset>
+         <iconset resource="QtGUI.qrc">
+          <normaloff>:/QtGUI/files/settings.ico</normaloff>:/QtGUI/files/settings.ico</iconset>
         </property>
         <property name="iconSize">
          <size>
-          <width>32</width>
-          <height>32</height>
+          <width>24</width>
+          <height>24</height>
          </size>
-        </property>
-        <property name="checkable">
-         <bool>false</bool>
         </property>
        </widget>
       </item>
      </layout>
     </item>
     <item>
-     <widget class="QLabel" name="label">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="font">
-       <font>
-        <family>Calibri</family>
-        <pointsize>12</pointsize>
-       </font>
-      </property>
-      <property name="frameShape">
-       <enum>QFrame::NoFrame</enum>
-      </property>
-      <property name="text">
-       <string>Sélectionnez le mode de jeu souhaité :</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="1,4">
       <property name="leftMargin">
        <number>20</number>
       </property>
@@ -109,10 +113,16 @@
       <item>
        <widget class="QComboBox" name="gm_selection">
         <property name="sizePolicy">
-         <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+         <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
           <horstretch>0</horstretch>
           <verstretch>0</verstretch>
          </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>160</width>
+          <height>0</height>
+         </size>
         </property>
        </widget>
       </item>
@@ -144,7 +154,7 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>683</width>
+         <width>637</width>
          <height>646</height>
         </rect>
        </property>
@@ -183,7 +193,7 @@
     <item>
      <widget class="QTabWidget" name="player_points_tabs">
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="player_tab">
        <attribute name="title">
@@ -244,7 +254,7 @@
              <enum>QFrame::Sunken</enum>
             </property>
             <property name="lineWidth">
-             <number>3</number>
+             <number>10</number>
             </property>
             <layout class="QHBoxLayout" name="horizontalLayout_5">
              <property name="leftMargin">
@@ -260,65 +270,155 @@
               <number>3</number>
              </property>
              <item>
-              <widget class="QToolButton" name="b_color0_2">
+              <widget class="QToolButton" name="b_white_player">
+               <property name="minimumSize">
+                <size>
+                 <width>22</width>
+                 <height>22</height>
+                </size>
+               </property>
                <property name="text">
                 <string>...</string>
+               </property>
+               <property name="icon">
+                <iconset resource="QtGUI.qrc">
+                 <normaloff>:/QtGUI/files/white.ico</normaloff>:/QtGUI/files/white.ico</iconset>
                </property>
               </widget>
              </item>
              <item>
-              <widget class="QToolButton" name="b_color1_2">
+              <widget class="QToolButton" name="b_blue_player">
+               <property name="minimumSize">
+                <size>
+                 <width>22</width>
+                 <height>22</height>
+                </size>
+               </property>
                <property name="text">
                 <string>...</string>
+               </property>
+               <property name="icon">
+                <iconset resource="QtGUI.qrc">
+                 <normaloff>:/QtGUI/files/blue.ico</normaloff>:/QtGUI/files/blue.ico</iconset>
                </property>
               </widget>
              </item>
              <item>
-              <widget class="QToolButton" name="b_color2_2">
+              <widget class="QToolButton" name="b_red_player">
+               <property name="minimumSize">
+                <size>
+                 <width>22</width>
+                 <height>22</height>
+                </size>
+               </property>
                <property name="text">
                 <string>...</string>
+               </property>
+               <property name="icon">
+                <iconset resource="QtGUI.qrc">
+                 <normaloff>:/QtGUI/files/red.ico</normaloff>:/QtGUI/files/red.ico</iconset>
                </property>
               </widget>
              </item>
              <item>
-              <widget class="QToolButton" name="b_color3_2">
+              <widget class="QToolButton" name="b_green_player">
+               <property name="minimumSize">
+                <size>
+                 <width>22</width>
+                 <height>22</height>
+                </size>
+               </property>
                <property name="text">
                 <string>...</string>
+               </property>
+               <property name="icon">
+                <iconset resource="QtGUI.qrc">
+                 <normaloff>:/QtGUI/files/green.ico</normaloff>:/QtGUI/files/green.ico</iconset>
                </property>
               </widget>
              </item>
              <item>
-              <widget class="QToolButton" name="b_color4_2">
+              <widget class="QToolButton" name="b_yellow_player">
+               <property name="minimumSize">
+                <size>
+                 <width>22</width>
+                 <height>22</height>
+                </size>
+               </property>
                <property name="text">
                 <string>...</string>
+               </property>
+               <property name="icon">
+                <iconset resource="QtGUI.qrc">
+                 <normaloff>:/QtGUI/files/yellow.ico</normaloff>:/QtGUI/files/yellow.ico</iconset>
                </property>
               </widget>
              </item>
              <item>
-              <widget class="QToolButton" name="b_color5_2">
+              <widget class="QToolButton" name="b_brown_player">
+               <property name="minimumSize">
+                <size>
+                 <width>22</width>
+                 <height>22</height>
+                </size>
+               </property>
                <property name="text">
                 <string>...</string>
+               </property>
+               <property name="icon">
+                <iconset resource="QtGUI.qrc">
+                 <normaloff>:/QtGUI/files/brown.ico</normaloff>:/QtGUI/files/brown.ico</iconset>
                </property>
               </widget>
              </item>
              <item>
-              <widget class="QToolButton" name="b_color6_2">
+              <widget class="QToolButton" name="b_pink_player">
+               <property name="minimumSize">
+                <size>
+                 <width>22</width>
+                 <height>22</height>
+                </size>
+               </property>
                <property name="text">
                 <string>...</string>
+               </property>
+               <property name="icon">
+                <iconset resource="QtGUI.qrc">
+                 <normaloff>:/QtGUI/files/pink.ico</normaloff>:/QtGUI/files/pink.ico</iconset>
                </property>
               </widget>
              </item>
              <item>
-              <widget class="QToolButton" name="b_color7_2">
+              <widget class="QToolButton" name="b_gray_player">
+               <property name="minimumSize">
+                <size>
+                 <width>22</width>
+                 <height>22</height>
+                </size>
+               </property>
                <property name="text">
                 <string>...</string>
+               </property>
+               <property name="icon">
+                <iconset resource="QtGUI.qrc">
+                 <normaloff>:/QtGUI/files/gray.ico</normaloff>:/QtGUI/files/gray.ico</iconset>
                </property>
               </widget>
              </item>
              <item>
-              <widget class="QToolButton" name="b_color8_2">
+              <widget class="QToolButton" name="b_orange_player">
+               <property name="minimumSize">
+                <size>
+                 <width>22</width>
+                 <height>22</height>
+                </size>
+               </property>
                <property name="text">
                 <string>...</string>
+               </property>
+               <property name="icon">
+                <iconset resource="QtGUI.qrc">
+                 <normaloff>:/QtGUI/files/orange.ico</normaloff>:/QtGUI/files/orange.ico</iconset>
                </property>
               </widget>
              </item>
@@ -330,8 +430,20 @@
                  <verstretch>0</verstretch>
                 </sizepolicy>
                </property>
+               <property name="minimumSize">
+                <size>
+                 <width>0</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="frameShadow">
+                <enum>QFrame::Sunken</enum>
+               </property>
                <property name="lineWidth">
-                <number>3</number>
+                <number>0</number>
+               </property>
+               <property name="midLineWidth">
+                <number>20</number>
                </property>
                <property name="orientation">
                 <enum>Qt::Vertical</enum>
@@ -339,9 +451,28 @@
               </widget>
              </item>
              <item>
-              <widget class="QToolButton" name="b_custom_color_2">
+              <widget class="QToolButton" name="b_custom_color_player">
+               <property name="minimumSize">
+                <size>
+                 <width>22</width>
+                 <height>22</height>
+                </size>
+               </property>
                <property name="text">
-                <string>...</string>
+                <string/>
+               </property>
+               <property name="icon">
+                <iconset resource="QtGUI.qrc">
+                 <normaloff>:/QtGUI/files/plus.ico</normaloff>:/QtGUI/files/plus.ico</iconset>
+               </property>
+               <property name="iconSize">
+                <size>
+                 <width>12</width>
+                 <height>12</height>
+                </size>
+               </property>
+               <property name="shortcut">
+                <string>6</string>
                </property>
               </widget>
              </item>
@@ -358,69 +489,39 @@
          </layout>
         </item>
         <item>
-         <widget class="QTableWidget" name="player_table">
-          <attribute name="horizontalHeaderVisible">
-           <bool>false</bool>
-          </attribute>
-          <attribute name="verticalHeaderVisible">
-           <bool>true</bool>
-          </attribute>
-          <row>
-           <property name="text">
-            <string/>
-           </property>
-          </row>
-          <row>
-           <property name="text">
-            <string/>
-           </property>
-          </row>
-          <row>
-           <property name="text">
-            <string/>
-           </property>
-          </row>
-          <row>
-           <property name="text">
-            <string/>
-           </property>
-          </row>
-          <column>
-           <property name="text">
-            <string>suppr</string>
-           </property>
-          </column>
-          <column>
-           <property name="text">
-            <string>name</string>
-           </property>
-          </column>
-          <column>
-           <property name="text">
-            <string>color</string>
-           </property>
-          </column>
-          <item row="0" column="1">
-           <property name="text">
-            <string>Rémi</string>
-           </property>
+         <layout class="QHBoxLayout" name="horizontalLayout_7" stretch="2,1">
+          <item>
+           <widget class="QScrollArea" name="scrollArea">
+            <property name="widgetResizable">
+             <bool>true</bool>
+            </property>
+            <widget class="QWidget" name="scrollAreaWidgetContents_2">
+             <property name="geometry">
+              <rect>
+               <x>0</x>
+               <y>0</y>
+               <width>414</width>
+               <height>70</height>
+              </rect>
+             </property>
+             <layout class="QVBoxLayout" name="verticalLayout_5"/>
+            </widget>
+           </widget>
           </item>
-          <item row="1" column="1">
-           <property name="text">
-            <string>Nico</string>
-           </property>
+          <item>
+           <spacer name="horizontalSpacer_4">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
           </item>
-          <item row="2" column="1">
-           <property name="text">
-            <string>Pierre</string>
-           </property>
-          </item>
-          <item row="3" column="1">
-           <property name="text">
-            <string>Benjamin</string>
-           </property>
-          </item>
-         </widget>
+         </layout>
         </item>
        </layout>
       </widget>
@@ -495,65 +596,155 @@
               <number>3</number>
              </property>
              <item>
-              <widget class="QToolButton" name="b_color0">
+              <widget class="QToolButton" name="b_white_points">
+               <property name="minimumSize">
+                <size>
+                 <width>22</width>
+                 <height>22</height>
+                </size>
+               </property>
                <property name="text">
                 <string>...</string>
+               </property>
+               <property name="icon">
+                <iconset resource="QtGUI.qrc">
+                 <normaloff>:/QtGUI/files/white.ico</normaloff>:/QtGUI/files/white.ico</iconset>
                </property>
               </widget>
              </item>
              <item>
-              <widget class="QToolButton" name="b_color1">
+              <widget class="QToolButton" name="b_blue_points">
+               <property name="minimumSize">
+                <size>
+                 <width>22</width>
+                 <height>22</height>
+                </size>
+               </property>
                <property name="text">
                 <string>...</string>
+               </property>
+               <property name="icon">
+                <iconset resource="QtGUI.qrc">
+                 <normaloff>:/QtGUI/files/blue.ico</normaloff>:/QtGUI/files/blue.ico</iconset>
                </property>
               </widget>
              </item>
              <item>
-              <widget class="QToolButton" name="b_color2">
+              <widget class="QToolButton" name="b_red_points">
+               <property name="minimumSize">
+                <size>
+                 <width>22</width>
+                 <height>22</height>
+                </size>
+               </property>
                <property name="text">
                 <string>...</string>
+               </property>
+               <property name="icon">
+                <iconset resource="QtGUI.qrc">
+                 <normaloff>:/QtGUI/files/red.ico</normaloff>:/QtGUI/files/red.ico</iconset>
                </property>
               </widget>
              </item>
              <item>
-              <widget class="QToolButton" name="b_color3">
+              <widget class="QToolButton" name="b_green_points">
+               <property name="minimumSize">
+                <size>
+                 <width>22</width>
+                 <height>22</height>
+                </size>
+               </property>
                <property name="text">
                 <string>...</string>
+               </property>
+               <property name="icon">
+                <iconset resource="QtGUI.qrc">
+                 <normaloff>:/QtGUI/files/green.ico</normaloff>:/QtGUI/files/green.ico</iconset>
                </property>
               </widget>
              </item>
              <item>
-              <widget class="QToolButton" name="b_color4">
+              <widget class="QToolButton" name="b_yellow_points">
+               <property name="minimumSize">
+                <size>
+                 <width>22</width>
+                 <height>22</height>
+                </size>
+               </property>
                <property name="text">
                 <string>...</string>
+               </property>
+               <property name="icon">
+                <iconset resource="QtGUI.qrc">
+                 <normaloff>:/QtGUI/files/yellow.ico</normaloff>:/QtGUI/files/yellow.ico</iconset>
                </property>
               </widget>
              </item>
              <item>
-              <widget class="QToolButton" name="b_color5">
+              <widget class="QToolButton" name="b_brown_points">
+               <property name="minimumSize">
+                <size>
+                 <width>22</width>
+                 <height>22</height>
+                </size>
+               </property>
                <property name="text">
                 <string>...</string>
+               </property>
+               <property name="icon">
+                <iconset resource="QtGUI.qrc">
+                 <normaloff>:/QtGUI/files/brown.ico</normaloff>:/QtGUI/files/brown.ico</iconset>
                </property>
               </widget>
              </item>
              <item>
-              <widget class="QToolButton" name="b_color6">
+              <widget class="QToolButton" name="b_pink_points">
+               <property name="minimumSize">
+                <size>
+                 <width>22</width>
+                 <height>22</height>
+                </size>
+               </property>
                <property name="text">
                 <string>...</string>
+               </property>
+               <property name="icon">
+                <iconset resource="QtGUI.qrc">
+                 <normaloff>:/QtGUI/files/pink.ico</normaloff>:/QtGUI/files/pink.ico</iconset>
                </property>
               </widget>
              </item>
              <item>
-              <widget class="QToolButton" name="b_color7">
+              <widget class="QToolButton" name="b_gray_points">
+               <property name="minimumSize">
+                <size>
+                 <width>22</width>
+                 <height>22</height>
+                </size>
+               </property>
                <property name="text">
                 <string>...</string>
+               </property>
+               <property name="icon">
+                <iconset resource="QtGUI.qrc">
+                 <normaloff>:/QtGUI/files/gray.ico</normaloff>:/QtGUI/files/gray.ico</iconset>
                </property>
               </widget>
              </item>
              <item>
-              <widget class="QToolButton" name="b_color8">
+              <widget class="QToolButton" name="b_orange_points">
+               <property name="minimumSize">
+                <size>
+                 <width>22</width>
+                 <height>22</height>
+                </size>
+               </property>
                <property name="text">
                 <string>...</string>
+               </property>
+               <property name="icon">
+                <iconset resource="QtGUI.qrc">
+                 <normaloff>:/QtGUI/files/orange.ico</normaloff>:/QtGUI/files/orange.ico</iconset>
                </property>
               </widget>
              </item>
@@ -566,7 +757,10 @@
                 </sizepolicy>
                </property>
                <property name="lineWidth">
-                <number>3</number>
+                <number>0</number>
+               </property>
+               <property name="midLineWidth">
+                <number>20</number>
                </property>
                <property name="orientation">
                 <enum>Qt::Vertical</enum>
@@ -574,9 +768,25 @@
               </widget>
              </item>
              <item>
-              <widget class="QToolButton" name="b_custom_color">
+              <widget class="QToolButton" name="b_custom_color_points">
+               <property name="minimumSize">
+                <size>
+                 <width>22</width>
+                 <height>22</height>
+                </size>
+               </property>
                <property name="text">
                 <string>...</string>
+               </property>
+               <property name="icon">
+                <iconset resource="QtGUI.qrc">
+                 <normaloff>:/QtGUI/files/plus.ico</normaloff>:/QtGUI/files/plus.ico</iconset>
+               </property>
+               <property name="iconSize">
+                <size>
+                 <width>12</width>
+                 <height>12</height>
+                </size>
                </property>
               </widget>
              </item>
@@ -594,6 +804,12 @@
         </item>
         <item>
          <widget class="QTableWidget" name="points_table">
+          <property name="autoScroll">
+           <bool>true</bool>
+          </property>
+          <property name="showGrid">
+           <bool>true</bool>
+          </property>
           <attribute name="horizontalHeaderVisible">
            <bool>false</bool>
           </attribute>
@@ -662,11 +878,41 @@
      </widget>
     </item>
     <item>
-     <widget class="QPushButton" name="b_play">
-      <property name="text">
-       <string>Jouer</string>
-      </property>
-     </widget>
+     <layout class="QHBoxLayout" name="horizontalLayout_8" stretch="8,1,1">
+      <item>
+       <spacer name="horizontalSpacer_5">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <widget class="QPushButton" name="b_play">
+        <property name="text">
+         <string>Jouer</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer name="horizontalSpacer_6">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+     </layout>
     </item>
    </layout>
   </widget>
@@ -675,7 +921,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>720</width>
+     <width>674</width>
      <height>22</height>
     </rect>
    </property>
