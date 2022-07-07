@@ -78,7 +78,7 @@
        </spacer>
       </item>
       <item>
-       <widget class="QToolButton" name="toolButton">
+       <widget class="QToolButton" name="b_settings">
         <property name="minimumSize">
          <size>
           <width>30</width>

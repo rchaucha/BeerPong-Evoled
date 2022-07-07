@@ -10,19 +10,6 @@
 #include "../Tools/RGBCameraInput.hpp"
 
 
-const std::vector<QColor> BPUApp::_colors = {
-      QColor(255, 255, 255),    // White
-      QColor(  0, 191, 255),    // Blue
-      QColor(255,   0,   0),    // Red
-      QColor(  0, 255,   0),    // Green
-      QColor(255, 255,   0),    // Yellow
-      QColor(255, 105, 180),    // Pink
-      QColor(128, 128, 128),    // Gray
-      QColor(139,  69,  19),    // Brown
-      QColor(255, 140,   0),    // Orange
-};
-
-
 BPUApp::BPUApp(int& argc, char** argv) :
    QApplication(argc, argv),
    _rgb_cam(RGBCameraInput::getInstance()),

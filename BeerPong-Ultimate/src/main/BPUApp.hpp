@@ -41,8 +41,6 @@ public slots:
    void set_detection_param2(double detection_param2) { _detection_tool.set_param2(detection_param2); }
 
 private :
-   static const std::vector<QColor> _colors;
-
    QVector2D _frame2window(const QVector2D frame_coordinates) const;
    int _err_msg(const QString& msg);
    GlassID _get_corresponding_id(const QRectF& rect);
