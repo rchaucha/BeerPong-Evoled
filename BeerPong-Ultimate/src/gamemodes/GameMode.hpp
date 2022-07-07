@@ -27,8 +27,8 @@ public:
    virtual bool are_players_used() = 0;
    virtual bool are_points_glasses_used() = 0;
 
-   void set_players(std::set<std::string>&& players);
-   void set_points(std::set<int>&& points);
+   void set_players(std::set<Player>&& players);
+   void set_points(std::set<Points>&& points);
 
    std::vector<CircleInGroup> get_glasses() const;
 
@@ -38,8 +38,8 @@ protected:
    virtual void _assign_new_glasses() = 0;
 
    std::map<GlassID, std::unique_ptr<AGlass>> _glasses;
-   std::set<std::string> _players;
-   std::set<int> _points;
+   std::set<Player> _players;
+   std::set<Points> _points;
 
    GlassGroupIDManager* _group_id_manager;
 };

@@ -1,5 +1,7 @@
 #include "QtGUI.hpp"
 
+#include "RandomGM.hpp"
+
 
 const std::vector<QColor> BPUApp::_default_colors = {
       QColor(255, 255, 255),    // White
