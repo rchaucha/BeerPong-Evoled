@@ -8,13 +8,13 @@ void GameMode::set_players(set<string>&& players)
 
    for (const string& player : _players)
    {
-      
+      // TODO  
    }
 }
 
 void GameMode::set_points(set<int>&& points)
 {
-
+   // TODO  
 }
 
 vector<CircleInGroup> GameMode::get_glasses() const

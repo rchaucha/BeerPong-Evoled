@@ -29,6 +29,7 @@ void RandomGM::update_logic(std::map<GlassID, QRectF>& circles)
    }
 }
 
+
 void RandomGM::update_view()
 {
 }

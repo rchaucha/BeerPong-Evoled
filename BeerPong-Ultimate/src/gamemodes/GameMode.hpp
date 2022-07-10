@@ -35,11 +35,9 @@ public:
 protected:
    GameMode() = default;
 
-   virtual void _assign_new_glasses() = 0;
-
    std::map<GlassID, std::unique_ptr<AGlass>> _glasses;
    std::set<Player> _players;
    std::set<Points> _points;
 
-   GlassGroupIDManager* _group_id_manager;
+   GlassGroupIDManager* _group_id_manager = nullptr;
 };

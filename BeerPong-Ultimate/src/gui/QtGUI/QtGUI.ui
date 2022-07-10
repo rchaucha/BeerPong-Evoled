@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>824</width>
-    <height>608</height>
+    <width>807</width>
+    <height>705</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -78,7 +78,7 @@
        </spacer>
       </item>
       <item>
-       <widget class="QToolButton" name="b_settings">
+       <widget class="QToolButton" name="toolButton">
         <property name="minimumSize">
          <size>
           <width>30</width>
@@ -154,16 +154,17 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>787</width>
-         <height>546</height>
+         <width>770</width>
+         <height>522</height>
         </rect>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_2">
         <item>
-         <widget class="QLabel" name="label_2">
+         <widget class="QLabel" name="description_label">
           <property name="font">
            <font>
-            <pointsize>11</pointsize>
+            <family>Calibri</family>
+            <pointsize>12</pointsize>
            </font>
           </property>
           <property name="frameShape">
@@ -192,8 +193,17 @@
     </item>
     <item>
      <widget class="QTabWidget" name="player_points_tabs">
+      <property name="font">
+       <font>
+        <family>Calibri</family>
+        <pointsize>12</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">padding: 0px </string>
+      </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="player_tab">
        <attribute name="title">
@@ -202,6 +212,12 @@
        <layout class="QVBoxLayout" name="verticalLayout_4" stretch="0,0,1">
         <item>
          <widget class="QLabel" name="label_3">
+          <property name="font">
+           <font>
+            <family>Calibri</family>
+            <pointsize>12</pointsize>
+           </font>
+          </property>
           <property name="text">
            <string>Ajouter un joueur :</string>
           </property>
@@ -214,6 +230,13 @@
           </property>
           <item>
            <widget class="QLineEdit" name="name_text_edit">
+            <property name="font">
+             <font>
+              <family>Century Gothic</family>
+              <pointsize>11</pointsize>
+              <bold>true</bold>
+             </font>
+            </property>
             <property name="placeholderText">
              <string>Nom</string>
             </property>
@@ -234,13 +257,19 @@
           </item>
           <item>
            <widget class="QLabel" name="label_4">
+            <property name="font">
+             <font>
+              <family>Calibri</family>
+              <pointsize>12</pointsize>
+             </font>
+            </property>
             <property name="text">
              <string>Couleur :</string>
             </property>
            </widget>
           </item>
           <item>
-           <widget class="QFrame" name="frame_2">
+           <widget class="QFrame" name="player_colors_layout">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
               <horstretch>0</horstretch>
@@ -258,16 +287,16 @@
             </property>
             <layout class="QHBoxLayout" name="horizontalLayout_5">
              <property name="leftMargin">
-              <number>3</number>
+              <number>2</number>
              </property>
              <property name="topMargin">
-              <number>3</number>
+              <number>2</number>
              </property>
              <property name="rightMargin">
-              <number>3</number>
+              <number>2</number>
              </property>
              <property name="bottomMargin">
-              <number>3</number>
+              <number>2</number>
              </property>
              <item>
               <widget class="QToolButton" name="b_white_player">
@@ -277,12 +306,21 @@
                  <height>22</height>
                 </size>
                </property>
+               <property name="styleSheet">
+                <string notr="true">padding: 2px </string>
+               </property>
                <property name="text">
                 <string>...</string>
                </property>
                <property name="icon">
                 <iconset resource="QtGUI.qrc">
                  <normaloff>:/QtGUI/files/white.ico</normaloff>:/QtGUI/files/white.ico</iconset>
+               </property>
+               <property name="checkable">
+                <bool>true</bool>
+               </property>
+               <property name="checked">
+                <bool>false</bool>
                </property>
               </widget>
              </item>
@@ -294,12 +332,21 @@
                  <height>22</height>
                 </size>
                </property>
+               <property name="styleSheet">
+                <string notr="true">padding: 2px </string>
+               </property>
                <property name="text">
                 <string>...</string>
                </property>
                <property name="icon">
                 <iconset resource="QtGUI.qrc">
                  <normaloff>:/QtGUI/files/blue.ico</normaloff>:/QtGUI/files/blue.ico</iconset>
+               </property>
+               <property name="checkable">
+                <bool>true</bool>
+               </property>
+               <property name="checked">
+                <bool>false</bool>
                </property>
               </widget>
              </item>
@@ -311,12 +358,21 @@
                  <height>22</height>
                 </size>
                </property>
+               <property name="styleSheet">
+                <string notr="true">padding: 2px </string>
+               </property>
                <property name="text">
                 <string>...</string>
                </property>
                <property name="icon">
                 <iconset resource="QtGUI.qrc">
                  <normaloff>:/QtGUI/files/red.ico</normaloff>:/QtGUI/files/red.ico</iconset>
+               </property>
+               <property name="checkable">
+                <bool>true</bool>
+               </property>
+               <property name="checked">
+                <bool>false</bool>
                </property>
               </widget>
              </item>
@@ -328,12 +384,21 @@
                  <height>22</height>
                 </size>
                </property>
+               <property name="styleSheet">
+                <string notr="true">padding: 2px </string>
+               </property>
                <property name="text">
                 <string>...</string>
                </property>
                <property name="icon">
                 <iconset resource="QtGUI.qrc">
                  <normaloff>:/QtGUI/files/green.ico</normaloff>:/QtGUI/files/green.ico</iconset>
+               </property>
+               <property name="checkable">
+                <bool>true</bool>
+               </property>
+               <property name="checked">
+                <bool>false</bool>
                </property>
               </widget>
              </item>
@@ -345,12 +410,21 @@
                  <height>22</height>
                 </size>
                </property>
+               <property name="styleSheet">
+                <string notr="true">padding: 2px </string>
+               </property>
                <property name="text">
                 <string>...</string>
                </property>
                <property name="icon">
                 <iconset resource="QtGUI.qrc">
                  <normaloff>:/QtGUI/files/yellow.ico</normaloff>:/QtGUI/files/yellow.ico</iconset>
+               </property>
+               <property name="checkable">
+                <bool>true</bool>
+               </property>
+               <property name="checked">
+                <bool>false</bool>
                </property>
               </widget>
              </item>
@@ -362,12 +436,21 @@
                  <height>22</height>
                 </size>
                </property>
+               <property name="styleSheet">
+                <string notr="true">padding: 2px </string>
+               </property>
                <property name="text">
                 <string>...</string>
                </property>
                <property name="icon">
                 <iconset resource="QtGUI.qrc">
                  <normaloff>:/QtGUI/files/brown.ico</normaloff>:/QtGUI/files/brown.ico</iconset>
+               </property>
+               <property name="checkable">
+                <bool>true</bool>
+               </property>
+               <property name="checked">
+                <bool>false</bool>
                </property>
               </widget>
              </item>
@@ -379,12 +462,21 @@
                  <height>22</height>
                 </size>
                </property>
+               <property name="styleSheet">
+                <string notr="true">padding: 2px </string>
+               </property>
                <property name="text">
                 <string>...</string>
                </property>
                <property name="icon">
                 <iconset resource="QtGUI.qrc">
                  <normaloff>:/QtGUI/files/pink.ico</normaloff>:/QtGUI/files/pink.ico</iconset>
+               </property>
+               <property name="checkable">
+                <bool>true</bool>
+               </property>
+               <property name="checked">
+                <bool>false</bool>
                </property>
               </widget>
              </item>
@@ -396,12 +488,21 @@
                  <height>22</height>
                 </size>
                </property>
+               <property name="styleSheet">
+                <string notr="true">padding: 2px </string>
+               </property>
                <property name="text">
                 <string>...</string>
                </property>
                <property name="icon">
                 <iconset resource="QtGUI.qrc">
                  <normaloff>:/QtGUI/files/gray.ico</normaloff>:/QtGUI/files/gray.ico</iconset>
+               </property>
+               <property name="checkable">
+                <bool>true</bool>
+               </property>
+               <property name="checked">
+                <bool>false</bool>
                </property>
               </widget>
              </item>
@@ -413,6 +514,9 @@
                  <height>22</height>
                 </size>
                </property>
+               <property name="styleSheet">
+                <string notr="true">padding: 2px </string>
+               </property>
                <property name="text">
                 <string>...</string>
                </property>
@@ -420,33 +524,11 @@
                 <iconset resource="QtGUI.qrc">
                  <normaloff>:/QtGUI/files/orange.ico</normaloff>:/QtGUI/files/orange.ico</iconset>
                </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="Line" name="line_2">
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
+               <property name="checkable">
+                <bool>true</bool>
                </property>
-               <property name="minimumSize">
-                <size>
-                 <width>0</width>
-                 <height>0</height>
-                </size>
-               </property>
-               <property name="frameShadow">
-                <enum>QFrame::Sunken</enum>
-               </property>
-               <property name="lineWidth">
-                <number>0</number>
-               </property>
-               <property name="midLineWidth">
-                <number>20</number>
-               </property>
-               <property name="orientation">
-                <enum>Qt::Vertical</enum>
+               <property name="checked">
+                <bool>false</bool>
                </property>
               </widget>
              </item>
@@ -457,6 +539,9 @@
                  <width>22</width>
                  <height>22</height>
                 </size>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">padding: 2px </string>
                </property>
                <property name="text">
                 <string/>
@@ -474,6 +559,12 @@
                <property name="shortcut">
                 <string>6</string>
                </property>
+               <property name="checkable">
+                <bool>true</bool>
+               </property>
+               <property name="checked">
+                <bool>false</bool>
+               </property>
               </widget>
              </item>
             </layout>
@@ -481,6 +572,15 @@
           </item>
           <item>
            <widget class="QPushButton" name="b_add_player">
+            <property name="font">
+             <font>
+              <family>Calibri</family>
+              <pointsize>12</pointsize>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">padding-right : 10px; padding-left : 10px; padding-top : 3px; padding-bottom : 3px</string>
+            </property>
             <property name="text">
              <string>Ajouter</string>
             </property>
@@ -491,20 +591,34 @@
         <item>
          <layout class="QHBoxLayout" name="horizontalLayout_7" stretch="2,1">
           <item>
-           <widget class="QScrollArea" name="scrollArea">
+           <widget class="QScrollArea" name="players_list">
             <property name="widgetResizable">
              <bool>true</bool>
             </property>
-            <widget class="QWidget" name="scrollAreaWidgetContents_2">
+            <widget class="QWidget" name="player_list_layout">
              <property name="geometry">
               <rect>
                <x>0</x>
                <y>0</y>
-               <width>514</width>
-               <height>223</height>
+               <width>503</width>
+               <height>292</height>
               </rect>
              </property>
-             <layout class="QVBoxLayout" name="verticalLayout_5"/>
+             <layout class="QVBoxLayout" name="verticalLayout_5">
+              <item>
+               <spacer name="verticalSpacer_2">
+                <property name="orientation">
+                 <enum>Qt::Vertical</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>20</width>
+                  <height>40</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+             </layout>
             </widget>
            </widget>
           </item>
@@ -532,6 +646,12 @@
        <layout class="QVBoxLayout" name="verticalLayout_3" stretch="0,0,1">
         <item>
          <widget class="QLabel" name="label_5">
+          <property name="font">
+           <font>
+            <family>Calibri</family>
+            <pointsize>12</pointsize>
+           </font>
+          </property>
           <property name="text">
            <string>Ajouter un type de verre :</string>
           </property>
@@ -544,16 +664,36 @@
           </property>
           <item>
            <widget class="QLabel" name="label_7">
+            <property name="font">
+             <font>
+              <family>Calibri</family>
+              <pointsize>12</pointsize>
+             </font>
+            </property>
             <property name="text">
              <string>Nombre de points :</string>
             </property>
            </widget>
           </item>
           <item>
-           <widget class="QSpinBox" name="points_value"/>
+           <widget class="QSpinBox" name="points_value">
+            <property name="font">
+             <font>
+              <family>Century Gothic</family>
+              <pointsize>11</pointsize>
+              <bold>true</bold>
+             </font>
+            </property>
+           </widget>
           </item>
           <item>
            <widget class="QLabel" name="label_6">
+            <property name="font">
+             <font>
+              <family>Calibri</family>
+              <pointsize>12</pointsize>
+             </font>
+            </property>
             <property name="text">
              <string>Couleur :</string>
             </property>
@@ -563,7 +703,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QFrame" name="frame">
+           <widget class="QFrame" name="points_colors_layout">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
               <horstretch>0</horstretch>
@@ -584,16 +724,16 @@
               <enum>QLayout::SetDefaultConstraint</enum>
              </property>
              <property name="leftMargin">
-              <number>3</number>
+              <number>2</number>
              </property>
              <property name="topMargin">
-              <number>3</number>
+              <number>2</number>
              </property>
              <property name="rightMargin">
-              <number>3</number>
+              <number>2</number>
              </property>
              <property name="bottomMargin">
-              <number>3</number>
+              <number>2</number>
              </property>
              <item>
               <widget class="QToolButton" name="b_white_points">
@@ -603,12 +743,18 @@
                  <height>22</height>
                 </size>
                </property>
+               <property name="styleSheet">
+                <string notr="true">padding: 2px </string>
+               </property>
                <property name="text">
                 <string>...</string>
                </property>
                <property name="icon">
                 <iconset resource="QtGUI.qrc">
                  <normaloff>:/QtGUI/files/white.ico</normaloff>:/QtGUI/files/white.ico</iconset>
+               </property>
+               <property name="checkable">
+                <bool>true</bool>
                </property>
               </widget>
              </item>
@@ -620,12 +766,18 @@
                  <height>22</height>
                 </size>
                </property>
+               <property name="styleSheet">
+                <string>padding: 2px </string>
+               </property>
                <property name="text">
                 <string>...</string>
                </property>
                <property name="icon">
                 <iconset resource="QtGUI.qrc">
                  <normaloff>:/QtGUI/files/blue.ico</normaloff>:/QtGUI/files/blue.ico</iconset>
+               </property>
+               <property name="checkable">
+                <bool>true</bool>
                </property>
               </widget>
              </item>
@@ -637,12 +789,18 @@
                  <height>22</height>
                 </size>
                </property>
+               <property name="styleSheet">
+                <string>padding: 2px </string>
+               </property>
                <property name="text">
                 <string>...</string>
                </property>
                <property name="icon">
                 <iconset resource="QtGUI.qrc">
                  <normaloff>:/QtGUI/files/red.ico</normaloff>:/QtGUI/files/red.ico</iconset>
+               </property>
+               <property name="checkable">
+                <bool>true</bool>
                </property>
               </widget>
              </item>
@@ -654,12 +812,18 @@
                  <height>22</height>
                 </size>
                </property>
+               <property name="styleSheet">
+                <string>padding: 2px </string>
+               </property>
                <property name="text">
                 <string>...</string>
                </property>
                <property name="icon">
                 <iconset resource="QtGUI.qrc">
                  <normaloff>:/QtGUI/files/green.ico</normaloff>:/QtGUI/files/green.ico</iconset>
+               </property>
+               <property name="checkable">
+                <bool>true</bool>
                </property>
               </widget>
              </item>
@@ -671,12 +835,18 @@
                  <height>22</height>
                 </size>
                </property>
+               <property name="styleSheet">
+                <string>padding: 2px </string>
+               </property>
                <property name="text">
                 <string>...</string>
                </property>
                <property name="icon">
                 <iconset resource="QtGUI.qrc">
                  <normaloff>:/QtGUI/files/yellow.ico</normaloff>:/QtGUI/files/yellow.ico</iconset>
+               </property>
+               <property name="checkable">
+                <bool>true</bool>
                </property>
               </widget>
              </item>
@@ -688,12 +858,18 @@
                  <height>22</height>
                 </size>
                </property>
+               <property name="styleSheet">
+                <string>padding: 2px </string>
+               </property>
                <property name="text">
                 <string>...</string>
                </property>
                <property name="icon">
                 <iconset resource="QtGUI.qrc">
                  <normaloff>:/QtGUI/files/brown.ico</normaloff>:/QtGUI/files/brown.ico</iconset>
+               </property>
+               <property name="checkable">
+                <bool>true</bool>
                </property>
               </widget>
              </item>
@@ -705,12 +881,18 @@
                  <height>22</height>
                 </size>
                </property>
+               <property name="styleSheet">
+                <string>padding: 2px </string>
+               </property>
                <property name="text">
                 <string>...</string>
                </property>
                <property name="icon">
                 <iconset resource="QtGUI.qrc">
                  <normaloff>:/QtGUI/files/pink.ico</normaloff>:/QtGUI/files/pink.ico</iconset>
+               </property>
+               <property name="checkable">
+                <bool>true</bool>
                </property>
               </widget>
              </item>
@@ -722,12 +904,18 @@
                  <height>22</height>
                 </size>
                </property>
+               <property name="styleSheet">
+                <string>padding: 2px </string>
+               </property>
                <property name="text">
                 <string>...</string>
                </property>
                <property name="icon">
                 <iconset resource="QtGUI.qrc">
                  <normaloff>:/QtGUI/files/gray.ico</normaloff>:/QtGUI/files/gray.ico</iconset>
+               </property>
+               <property name="checkable">
+                <bool>true</bool>
                </property>
               </widget>
              </item>
@@ -739,6 +927,9 @@
                  <height>22</height>
                 </size>
                </property>
+               <property name="styleSheet">
+                <string>padding: 2px </string>
+               </property>
                <property name="text">
                 <string>...</string>
                </property>
@@ -746,34 +937,24 @@
                 <iconset resource="QtGUI.qrc">
                  <normaloff>:/QtGUI/files/orange.ico</normaloff>:/QtGUI/files/orange.ico</iconset>
                </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="Line" name="line">
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
-               </property>
-               <property name="lineWidth">
-                <number>0</number>
-               </property>
-               <property name="midLineWidth">
-                <number>20</number>
-               </property>
-               <property name="orientation">
-                <enum>Qt::Vertical</enum>
+               <property name="checkable">
+                <bool>true</bool>
                </property>
               </widget>
              </item>
              <item>
               <widget class="QToolButton" name="b_custom_color_points">
+               <property name="enabled">
+                <bool>true</bool>
+               </property>
                <property name="minimumSize">
                 <size>
                  <width>22</width>
                  <height>22</height>
                 </size>
+               </property>
+               <property name="styleSheet">
+                <string>padding: 2px </string>
                </property>
                <property name="text">
                 <string>...</string>
@@ -788,6 +969,9 @@
                  <height>12</height>
                 </size>
                </property>
+               <property name="checkable">
+                <bool>true</bool>
+               </property>
               </widget>
              </item>
             </layout>
@@ -795,6 +979,21 @@
           </item>
           <item>
            <widget class="QPushButton" name="b_add_points">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="font">
+             <font>
+              <family>Calibri</family>
+              <pointsize>12</pointsize>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">padding-right : 10px; padding-left : 10px; padding-top : 3px; padding-bottom : 3px</string>
+            </property>
             <property name="text">
              <string>Ajouter</string>
             </property>
@@ -805,20 +1004,91 @@
         <item>
          <layout class="QHBoxLayout" name="horizontalLayout_9" stretch="2,1">
           <item>
-           <widget class="QScrollArea" name="scrollArea_2">
+           <widget class="QScrollArea" name="points_list">
             <property name="widgetResizable">
              <bool>true</bool>
             </property>
-            <widget class="QWidget" name="scrollAreaWidgetContents_3">
+            <widget class="QWidget" name="points_list_layout">
              <property name="geometry">
               <rect>
                <x>0</x>
                <y>0</y>
-               <width>514</width>
-               <height>223</height>
+               <width>503</width>
+               <height>292</height>
               </rect>
              </property>
-             <layout class="QVBoxLayout" name="verticalLayout_6"/>
+             <layout class="QVBoxLayout" name="verticalLayout_6">
+              <property name="sizeConstraint">
+               <enum>QLayout::SetMinimumSize</enum>
+              </property>
+              <item>
+               <layout class="QHBoxLayout" name="horizontalLayout_10">
+                <property name="sizeConstraint">
+                 <enum>QLayout::SetFixedSize</enum>
+                </property>
+                <item>
+                 <widget class="QLabel" name="label_2">
+                  <property name="text">
+                   <string/>
+                  </property>
+                  <property name="pixmap">
+                   <pixmap resource="QtGUI.qrc">:/QtGUI/files/pink.ico</pixmap>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLineEdit" name="lineEdit">
+                  <property name="font">
+                   <font>
+                    <family>Century Gothic</family>
+                    <pointsize>11</pointsize>
+                    <bold>true</bold>
+                   </font>
+                  </property>
+                  <property name="text">
+                   <string>Rémi</string>
+                  </property>
+                  <property name="maxLength">
+                   <number>30</number>
+                  </property>
+                  <property name="frame">
+                   <bool>false</bool>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QToolButton" name="toolButton_2">
+                  <property name="autoFillBackground">
+                   <bool>false</bool>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true">padding: 4;</string>
+                  </property>
+                  <property name="text">
+                   <string>...</string>
+                  </property>
+                  <property name="icon">
+                   <iconset resource="QtGUI.qrc">
+                    <normaloff>:/QtGUI/files/red_cross.ico</normaloff>:/QtGUI/files/red_cross.ico</iconset>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+              <item>
+               <spacer name="verticalSpacer">
+                <property name="orientation">
+                 <enum>Qt::Vertical</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>20</width>
+                  <height>40</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+             </layout>
             </widget>
            </widget>
           </item>
@@ -842,7 +1112,7 @@
      </widget>
     </item>
     <item>
-     <layout class="QHBoxLayout" name="horizontalLayout_8" stretch="8,1,1">
+     <layout class="QHBoxLayout" name="horizontalLayout_8" stretch="5,0,1">
       <item>
        <spacer name="horizontalSpacer_5">
         <property name="orientation">
@@ -858,6 +1128,12 @@
       </item>
       <item>
        <widget class="QPushButton" name="b_play">
+        <property name="font">
+         <font>
+          <family>Calibri</family>
+          <pointsize>12</pointsize>
+         </font>
+        </property>
         <property name="text">
          <string>Jouer</string>
         </property>
@@ -885,7 +1161,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>824</width>
+     <width>807</width>
      <height>22</height>
     </rect>
    </property>

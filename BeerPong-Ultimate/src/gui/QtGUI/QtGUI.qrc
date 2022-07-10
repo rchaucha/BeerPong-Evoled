@@ -12,5 +12,6 @@
         <file>files/settings.ico</file>
         <file>files/white.ico</file>
         <file>files/yellow.ico</file>
+        <file>files/red_cross.ico</file>
     </qresource>
 </RCC>

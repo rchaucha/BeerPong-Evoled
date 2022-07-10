@@ -1,21 +1,20 @@
 #pragma once
 
 #include <vector>
+#include <set>
 #include <string>
 
-#include "GameMode.hpp"
+#include "../glasses/GlassGroupIDManager.hpp"
 
+class GameMode;
 
-enum GameModesEnum { Random };
-
-
-class GameModeManager
+class GameModesManager
 {
-public:
-   GameModeManager();
-   
-   GameMode* get_gamemode_from_string(GameModesEnum gamemode_name);
+public:   
+   static GameMode* create_new_gamemode(std::string gamemode_name, std::set<Player>&& players, std::set<Points>&& points);
+
+   static std::string get_description(std::string gamemode_name);
 
 private:
-
+   inline static std::vector<std::string> _gamemodes_names = { "Random" };
 };
