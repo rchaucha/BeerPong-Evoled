@@ -60,39 +60,6 @@ void QtGUI::on_b_add_player_clicked()
 }
 
 
-QHBoxLayout* QtGUI::_generate_new_player_line(Player name, QColor color)
-{
-   QHBoxLayout* new_layout = new QHBoxLayout();
-   new_layout->setSpacing(6);
-   new_layout->setObjectName(QString::fromUtf8("new_layout"));
-   new_layout->setSizeConstraint(QLayout::SetFixedSize);
-   label_2 = new QLabel(points_list_layout);
-   label_2->setObjectName(QString::fromUtf8("label_2"));
-   label_2->setPixmap(QPixmap(QString::fromUtf8(":/QtGUI/files/pink.ico")));
-
-   new_layout->addWidget(label_2);
-
-   lineEdit = new QLineEdit(points_list_layout);
-   lineEdit->setObjectName(QString::fromUtf8("lineEdit"));
-   lineEdit->setFont(font1);
-   lineEdit->setMaxLength(30);
-   lineEdit->setFrame(false);
-
-   new_layout->addWidget(lineEdit);
-
-   toolButton_2 = new QToolButton(points_list_layout);
-   toolButton_2->setObjectName(QString::fromUtf8("toolButton_2"));
-   toolButton_2->setAutoFillBackground(false);
-   toolButton_2->setStyleSheet(QString::fromUtf8("padding: 4;"));
-   QIcon icon12;
-   icon12.addFile(QString::fromUtf8(":/QtGUI/files/red_cross.ico"), QSize(), QIcon::Normal, QIcon::Off);
-   toolButton_2->setIcon(icon12);
-
-   new_layout->addWidget(toolButton_2);
-
-   return QHBoxLayout();
-}
-
 void QtGUI::_select_player_color(int color_index, bool checked)
 {
    if (checked)

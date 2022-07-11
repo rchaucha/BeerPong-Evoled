@@ -1,8 +1,13 @@
 #include "RandomGM.hpp"
 
-#include <stdlib.h>
-#include <time.h>
 #include "../Glasses/OwnedGlass.hpp"
+
+
+RandomGM::RandomGM() 
+{
+   std::random_device rd; // Used to get initial value of random sequence
+   _random_engine = std::make_unique<std::mt19937>(rd()); // The random sequence generator, initialised using the rd
+}
 
 
 void RandomGM::update_logic(std::map<GlassID, QRectF>& circles)
@@ -20,7 +25,8 @@ void RandomGM::update_logic(std::map<GlassID, QRectF>& circles)
       }
       else
       {
-         int i = rand() % _players.size();
+         std::uniform_int_distribution<int> distribution(0, _players.size()-1);
+         const int i = distribution(*_random_engine);
          auto player_it = _players.begin();
          std::advance(player_it, i);
 

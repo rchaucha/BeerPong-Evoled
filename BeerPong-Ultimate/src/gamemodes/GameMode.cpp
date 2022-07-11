@@ -1,25 +1,24 @@
 #include "GameMode.hpp"
 
-using namespace std;
 
-void GameMode::set_players(set<string>&& players)
+void GameMode::set_players(std::set<std::string>&& players)
 {
    _players = move(players);
 
-   for (const string& player : _players)
+   for (const std::string& player : _players)
    {
       // TODO  
    }
 }
 
-void GameMode::set_points(set<int>&& points)
+void GameMode::set_points(std::set<int>&& points)
 {
    // TODO  
 }
 
-vector<CircleInGroup> GameMode::get_glasses() const
+std::vector<CircleInGroup> GameMode::get_glasses() const
 {
-   vector<CircleInGroup> glasses_vec;
+   std::vector<CircleInGroup> glasses_vec;
 
    for (const auto& glass : _glasses)
    {

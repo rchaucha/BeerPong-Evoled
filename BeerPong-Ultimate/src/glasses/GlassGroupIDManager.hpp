@@ -6,8 +6,8 @@
 
 
 typedef unsigned long GroupID;
-typedef int Points;
-typedef std::string Player;
+typedef const int Points;
+typedef const std::string Player;
 
 
 class GlassGroupIDManager

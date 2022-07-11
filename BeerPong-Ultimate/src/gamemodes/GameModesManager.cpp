@@ -2,14 +2,12 @@
 
 #include "RandomGM.hpp"
 
-using namespace std;
 
-
-GameMode* GameModesManager::create_new_gamemode(std::string gamemode_name, std::set<Player>&& players, std::set<Points>&& points)
+std::unique_ptr<GameMode> GameModesManager::create_new_gamemode(std::string gamemode_name, std::set<Player>&& players, std::set<Points>&& points)
 {
-   GameMode* gamemode;
+   std::unique_ptr<GameMode> gamemode(nullptr);
    if (gamemode_name == "Random")
-      gamemode = new RandomGM;
+      gamemode = std::make_unique<RandomGM>(new RandomGM);
 
    if (gamemode)
    {
