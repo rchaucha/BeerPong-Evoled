@@ -5,22 +5,22 @@
 
 #include "../../glasses/GlassGroupIDManager.hpp"
 
+
+class QHBoxLayout;
+
 class QListLine: public QWidget
 {
    Q_OBJECT
 
 public:
    QListLine(QWidget* parent, const QPixmap& color_icon);
-   QListLine(QWidget* parent, const Points points, const QPixmap& color_icon);
 
-/*
-public signals:
-   void remove();
-
+signals:
+   void remove(QWidget* to_be_removed);
 
 private slots:
-   void remove_button_cliked() { emit remove(); }
-   */
+   void remove_button_cliked() { emit remove((QWidget*)this); }
+
 
 protected:
    QString _name_with_id(std::string base_name) const { return QString::fromUtf8(base_name + std::to_string(_id)); }

@@ -27,7 +27,8 @@ QListLine::QListLine(QWidget* parent, const QPixmap& color_icon) :
    remove_button->setAutoFillBackground(false);
    remove_button->setStyleSheet(QString::fromUtf8("padding: 4;"));
    QIcon red_cross_icon;
-   red_cross_icon.addFile(QString::fromUtf8(":/QtGUI/files/red_cross.ico"), QSize(), QIcon::Normal, QIcon::Off);
+   red_cross_icon.addFile( QString::fromUtf8(":/QtGUI/files/red_cross.ico"), 
+                           QSize(), QIcon::Normal, QIcon::Off);
    remove_button->setIcon(red_cross_icon);
 
    _layout->addWidget(remove_button);
@@ -36,4 +37,6 @@ QListLine::QListLine(QWidget* parent, const QPixmap& color_icon) :
    _default_font->setFamilies({ QString::fromUtf8("Century Gothic") });
    _default_font->setPointSize(11);
    _default_font->setBold(true);
+
+   connect(remove_button, &QToolButton::clicked, this, &QListLine::remove_button_cliked);
 }

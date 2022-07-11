@@ -1,5 +1,7 @@
 #include "QPointsListLine.hpp"
 
+#include <QHBoxLayout>
+
 
 QPointsListLine::QPointsListLine(QWidget* parent, Points points, const QPixmap& color_icon) :
    QListLine(parent, color_icon)

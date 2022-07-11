@@ -1,5 +1,7 @@
 #include "QPlayerListLine.hpp"
 
+#include <QHBoxLayout>
+
 
 QPlayerListLine::QPlayerListLine(QWidget* parent, const Player& player, const QPixmap& color_icon) :
    QListLine(parent, color_icon)
