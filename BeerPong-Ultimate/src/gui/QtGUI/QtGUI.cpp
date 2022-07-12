@@ -20,7 +20,9 @@ const std::vector<QColor> QtGUI::_default_colors = {
 };
 
 
-QtGUI::QtGUI(QWidget *parent) : QMainWindow(parent)
+QtGUI::QtGUI(QWidget *parent) : QMainWindow(parent),
+   _selected_player_color_ind(0),
+   _selected_points_color_ind(0)
 {
    _ui.setupUi(this);
 
@@ -33,6 +35,42 @@ QtGUI::QtGUI(QWidget *parent) : QMainWindow(parent)
    _color_buttons.push_back(_ui.b_pink_player);
    _color_buttons.push_back(_ui.b_gray_player);
    _color_buttons.push_back(_ui.b_orange_player);
+}
+
+
+std::vector<ColoredPlayer> QtGUI::get_players()
+{
+   assert(_players_lines_color.size() == _ui.players_list->layout()->count() + 1    // + 1 pour le vertical spacer
+      && "_players_lines_color and the number of lines must be the same.");
+      
+   std::vector<ColoredPlayer> colored_players;
+
+   // Gather all names from edit names and colors from the vector
+   for (int i = 0; i < _players_lines_color.size(); i++)
+   {
+      QPlayerListLine* player_line = dynamic_cast<QPlayerListLine*>(_ui.players_list->layout()->itemAt(i)->widget());
+      colored_players.push_back({ player_line->get_player_name(), _players_lines_color[i] });
+   }
+
+   return colored_players;
+}
+
+
+std::vector<ColoredPoints> QtGUI::get_points()
+{
+   assert(_points_lines_color.size() == _ui.points_list->layout()->count() + 1    // + 1 pour le vertical spacer
+      && "_points_lines_color and the number of lines must be the same.");
+
+   std::vector<ColoredPoints> colored_points;
+
+   // Gather all names from edit names and colors from the vector
+   for (int i = 0; i < _points_lines_color.size(); i++)
+   {
+      QPointsListLine* points_line = dynamic_cast<QPointsListLine*>(_ui.points_list->layout()->itemAt(i)->widget());
+      colored_points.push_back({ points_line->get_points(), _points_lines_color[i] });
+   }
+
+   return colored_points;
 }
 
 
