@@ -89,11 +89,10 @@ void QtGUI::on_name_text_edit_textChanged()
 void QtGUI::on_b_add_player_clicked()
 {
    // Add color to vector
-   _players_lines_color.push_back(_default_colors[_selected_player_color_ind]);
+   _players_lines_color.push_back(_selected_color);
 
    // Remove color button
-   auto* color_button = _color_buttons[_selected_player_color_ind];
-   color_button->setVisible(false);
+   _selected_player_color_button->setVisible(false);
 
    // Add Player in the list
    auto* player_line = new QPlayerListLine((QWidget*)_ui.players_list, _ui.name_text_edit->text().toStdString(),
@@ -107,11 +106,10 @@ void QtGUI::on_b_add_player_clicked()
 void QtGUI::on_b_add_points_clicked()
 {
    // Add color to vector
-   _points_lines_color.push_back(_default_colors[_selected_points_color_ind]);
+   _points_lines_color.push_back(_selected_color);
 
    // Remove color button
-   auto* color_button = _color_buttons[_selected_points_color_ind];
-   color_button->setVisible(false);
+   _selected_points_color_button->setVisible(false);
 
    // Add Player in the list
    auto* points_line = new QPointsListLine((QWidget*)_ui.players_list, _ui.points_value->value(),
@@ -180,13 +178,13 @@ void QtGUI::_select_points_color(int color_index, bool checked)
 
 void QtGUI::_enable_or_disable_b_add_player()
 {
-   bool is_player_name_set = _ui.name_text_edit->text().size() == 0;
+   bool is_player_name_set = _ui.name_text_edit->text().size() != 0;
    bool is_color_chosen = _selected_color != QColor(0, 0, 0);
 
    if (is_player_name_set && is_color_chosen)
-      _ui.b_add_player->setDisabled(true);
-   else
       _ui.b_add_player->setDisabled(false);
+   else
+      _ui.b_add_player->setDisabled(true);
 }
 
 
@@ -196,9 +194,9 @@ void QtGUI::_enable_or_disable_b_add_points()
    bool is_color_chosen = _selected_color != QColor(0, 0, 0);
 
    if (is_points_name_set && is_color_chosen)
-      _ui.b_add_player->setDisabled(true);
-   else
       _ui.b_add_player->setDisabled(false);
+   else
+      _ui.b_add_player->setDisabled(true);
 }
 
 

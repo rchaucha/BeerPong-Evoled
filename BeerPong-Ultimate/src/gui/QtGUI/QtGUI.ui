@@ -572,6 +572,9 @@
           </item>
           <item>
            <widget class="QPushButton" name="b_add_player">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
             <property name="font">
              <font>
               <family>Calibri</family>
@@ -985,6 +988,9 @@
           </item>
           <item>
            <widget class="QPushButton" name="b_add_points">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
             <property name="sizePolicy">
              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
               <horstretch>0</horstretch>

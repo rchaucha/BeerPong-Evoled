@@ -37,11 +37,13 @@ int BPUApp::init()
    _main_gui.show();
    _main_gui.setScreen(qApp->screens()[0]);
 
+   /*
    _projector_win.setWindowFlags(Qt::Window);
    _projector_win.show();
 
    _projector_win.setScreen(qApp->screens()[1]);
    _projector_win.showFullScreen();
+   */
 
    open_webcam(0);
 

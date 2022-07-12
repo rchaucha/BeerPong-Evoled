@@ -7,7 +7,7 @@ std::unique_ptr<GameMode> GameModesManager::create_new_gamemode(std::string game
 {
    std::unique_ptr<GameMode> gamemode(nullptr);
    if (gamemode_name == "Random")
-      gamemode = std::make_unique<RandomGM>(new RandomGM);
+      gamemode = std::make_unique<RandomGM>();
 
    if (gamemode)
    {
@@ -21,5 +21,7 @@ std::unique_ptr<GameMode> GameModesManager::create_new_gamemode(std::string game
 std::string GameModesManager::get_description(std::string gamemode_name)
 {
    if (gamemode_name == "Random")
-      return "Les verres sont attribués de manière aléatoire de manière équitable.";
+      return "Les verres sont attribuÃ©s de maniÃ¨re alÃ©atoire de maniÃ¨re Ã©quitable.";
+
+   return "";
 }

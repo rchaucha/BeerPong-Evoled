@@ -33,7 +33,7 @@ public:
    std::string get_gamemode() { return _ui.gm_selection->currentText().toStdString(); }
 
 private slots:
-   void on_b_settings_clicked();
+   void on_b_settings_clicked() { /* TODO; */ }
 
    void on_gm_selection_currentIndexChanged(int index);
 
@@ -41,7 +41,7 @@ private slots:
 
    void on_b_add_player_clicked();
    void on_b_add_points_clicked();
-   void on_b_play_clicked();
+   void on_b_play_clicked() { /* TODO; */ }
 
    void on_b_white_player_toggled(bool checked) { _select_player_color(0, checked); }
    void on_b_blue_player_toggled(bool checked) { _select_player_color(1, checked); }
@@ -82,8 +82,8 @@ private:
 
    static const std::vector<QColor> _default_colors;
 
-   int _selected_player_color_ind;
-   int _selected_points_color_ind;
+   QToolButton* _selected_player_color_button;
+   QToolButton* _selected_points_color_button;
 
    QColor _selected_color{ 0,0,0 };
 

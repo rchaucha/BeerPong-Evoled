@@ -18,6 +18,8 @@ public:
    virtual bool are_points_glasses_used() { return false; }
 
 private:
+   RandomGM(const RandomGM&) = delete;
+
    std::unique_ptr<std::mt19937> _random_engine;
 };
 
