@@ -5,6 +5,7 @@
 #include "../../gamemodes/GameModesManager.hpp"
 #include "../../gui/CustomWidgets/QPlayerListLine.hpp"
 #include "../../gui/CustomWidgets/QPointsListLine.hpp"
+#include "../../gui/CustomWidgets/QColorButton.hpp"
 
 
 const std::vector<QColor> QtGUI::_default_colors = {
@@ -20,13 +21,49 @@ const std::vector<QColor> QtGUI::_default_colors = {
 };
 
 
-QtGUI::QtGUI(QWidget *parent) : QMainWindow(parent),
-   _selected_player_color_ind(0),
-   _selected_points_color_ind(0)
+QtGUI::QtGUI(QWidget *parent) : QMainWindow(parent)
 {
    _ui.setupUi(this);
 
-   _color_buttons.push_back(_ui.b_white_player);
+   for (QColor color : _default_colors)
+   {
+      QImage icon = QPixmap(":/QtGUI/files/red.ico").toImage();
+
+
+
+
+      // DANS UNE FONCTION
+
+      for (int y = 0; y < icon.height(); ++y) {
+         QRgb* line = reinterpret_cast<QRgb*>(icon.scanLine(y));
+         for (int x = 0; x < icon.width(); ++x) {
+            QRgb& rgb = line[x];
+            if (rgb == qRgb(255,0,0))
+               rgb = color.rgba();
+         }
+      }
+
+
+
+
+      /*
+      for (quint64 pixel = 0; pixel < icon.width() * icon.height(); pixel++) {
+         // st[p] has an individual pixel
+         st[p] = QColor(255, 128, 0).rgb();
+      }
+
+      auto mask = pixmap.createMaskFromColor(QColor(255, 0, 0), Qt::MaskOutColor);
+      pixmap.fill(color);
+      pixmap.setMask(mask);
+      */
+
+
+      auto* new_color_button = new QColorButton(_ui.points_colors_layout, color, QIcon(QPixmap::fromImage(icon)));
+
+      _ui.points_colors_layout->layout()->addWidget(new_color_button);
+      _color_buttons.push_back(new_color_button);
+   }
+   /*
    _color_buttons.push_back(_ui.b_blue_player);
    _color_buttons.push_back(_ui.b_red_player);
    _color_buttons.push_back(_ui.b_green_player);
@@ -34,7 +71,7 @@ QtGUI::QtGUI(QWidget *parent) : QMainWindow(parent),
    _color_buttons.push_back(_ui.b_brown_player);
    _color_buttons.push_back(_ui.b_pink_player);
    _color_buttons.push_back(_ui.b_gray_player);
-   _color_buttons.push_back(_ui.b_orange_player);
+   _color_buttons.push_back(_ui.b_orange_player);*/
 }
 
 
@@ -96,7 +133,7 @@ void QtGUI::on_b_add_player_clicked()
 
    // Add Player in the list
    auto* player_line = new QPlayerListLine((QWidget*)_ui.players_list, _ui.name_text_edit->text().toStdString(),
-                                             color_button->icon().pixmap(QSize(22, 22)));
+                                          _selected_player_color_button->icon().pixmap(QSize(22, 22)));
    _ui.players_list->layout()->addWidget(player_line);
 
    connect(player_line, &QListLine::remove, this, &QtGUI::remove_player_line);
@@ -113,7 +150,7 @@ void QtGUI::on_b_add_points_clicked()
 
    // Add Player in the list
    auto* points_line = new QPointsListLine((QWidget*)_ui.players_list, _ui.points_value->value(),
-                                             color_button->icon().pixmap(QSize(22, 22)));
+                                          _selected_player_color_button->icon().pixmap(QSize(22, 22)));
    _ui.points_list->layout()->addWidget(points_line);
 
    connect(points_line, &QListLine::remove, this, &QtGUI::remove_points_line);

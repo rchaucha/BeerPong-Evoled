@@ -19,6 +19,7 @@ struct ColoredPoints {
    QColor color;
 };
 
+class QColorButton;
 
 class QtGUI : public QMainWindow
 {
@@ -75,17 +76,25 @@ private:
    void _enable_or_disable_b_add_player();
    void _enable_or_disable_b_add_points();
 
+
+
+   // TO REMOVE
+   QColor _selected_color{ 0,0,0 };
+
+
+
+
+
+
    
    Ui::QtGUIClass _ui;
 
-   std::vector<QToolButton*> _color_buttons;
+   std::vector<QColorButton*> _color_buttons;
 
    static const std::vector<QColor> _default_colors;
 
-   QToolButton* _selected_player_color_button;
-   QToolButton* _selected_points_color_button;
-
-   QColor _selected_color{ 0,0,0 };
+   QColorButton* _selected_player_color_button;
+   QColorButton* _selected_points_color_button;
 
    std::vector<QColor> _players_lines_color;
    std::vector<QColor> _points_lines_color;
