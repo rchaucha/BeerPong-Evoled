@@ -21,57 +21,43 @@ const std::vector<QColor> QtGUI::_default_colors = {
 };
 
 
+void change_red_pix(QImage& img, const QColor& new_color)
+{
+   for (int y = 0; y < img.height(); ++y)
+   {
+      QRgb* line = reinterpret_cast<QRgb*>(img.scanLine(y));
+      for (int x = 0; x < img.width(); ++x)
+      {
+         QRgb& rgb = line[x];
+         if (qRed(rgb) > 100)
+            rgb = new_color.rgb();
+      }
+   }
+}
+
+
 QtGUI::QtGUI(QWidget *parent) : QMainWindow(parent)
 {
    _ui.setupUi(this);
 
    for (QColor color : _default_colors)
    {
-      QImage icon = QPixmap(":/QtGUI/files/red.ico").toImage();
+      QImage icon_img = QPixmap(":/QtGUI/files/red_color.ico").toImage();
+      change_red_pix(icon_img, color);
+      QIcon icon(QPixmap::fromImage(icon_img));
 
+      auto* new_player_color_button = new QColorButton(_ui.points_colors_layout, color, icon);
+      auto* new_points_color_button = new QColorButton(_ui.points_colors_layout, color, icon);
 
+      connect(new_player_color_button, &QToolButton::toggled, this, &QtGUI::remove_player_line);
+      connect(new_points_color_button, &QToolButton::toggled, this, &QtGUI::remove_player_line);
 
+      _ui.player_colors_layout->layout()->addWidget(new_player_color_button);
+      _ui.points_colors_layout->layout()->addWidget(new_points_color_button);
 
-      // DANS UNE FONCTION
-
-      for (int y = 0; y < icon.height(); ++y) {
-         QRgb* line = reinterpret_cast<QRgb*>(icon.scanLine(y));
-         for (int x = 0; x < icon.width(); ++x) {
-            QRgb& rgb = line[x];
-            if (rgb == qRgb(255,0,0))
-               rgb = color.rgba();
-         }
-      }
-
-
-
-
-      /*
-      for (quint64 pixel = 0; pixel < icon.width() * icon.height(); pixel++) {
-         // st[p] has an individual pixel
-         st[p] = QColor(255, 128, 0).rgb();
-      }
-
-      auto mask = pixmap.createMaskFromColor(QColor(255, 0, 0), Qt::MaskOutColor);
-      pixmap.fill(color);
-      pixmap.setMask(mask);
-      */
-
-
-      auto* new_color_button = new QColorButton(_ui.points_colors_layout, color, QIcon(QPixmap::fromImage(icon)));
-
-      _ui.points_colors_layout->layout()->addWidget(new_color_button);
-      _color_buttons.push_back(new_color_button);
+      _player_color_buttons.push_back(new_player_color_button);
+      _points_color_buttons.push_back(new_points_color_button);
    }
-   /*
-   _color_buttons.push_back(_ui.b_blue_player);
-   _color_buttons.push_back(_ui.b_red_player);
-   _color_buttons.push_back(_ui.b_green_player);
-   _color_buttons.push_back(_ui.b_yellow_player);
-   _color_buttons.push_back(_ui.b_brown_player);
-   _color_buttons.push_back(_ui.b_pink_player);
-   _color_buttons.push_back(_ui.b_gray_player);
-   _color_buttons.push_back(_ui.b_orange_player);*/
 }
 
 
@@ -183,7 +169,7 @@ void QtGUI::remove_points_line(QWidget* to_be_removed)
 }
 
 
-void QtGUI::_select_color(int color_index, bool checked)
+void QtGUI::_select_color(int color_index, bool checked, std::vector<QColorButton*>& color_buttons)
 {
    if (checked)
    {
@@ -200,15 +186,15 @@ void QtGUI::_select_color(int color_index, bool checked)
 
 
 void QtGUI::_select_player_color(int color_index, bool checked)
-{
-   _select_color(color_index, checked);
+{ 
+   _select_color(color_index, checked, _player_color_buttons);
    _enable_or_disable_b_add_player();
 }
 
 
 void QtGUI::_select_points_color(int color_index, bool checked)
 {
-   _select_color(color_index, checked);
+   _select_color(color_index, checked, _points_color_buttons);
    _enable_or_disable_b_add_points();
 }
 
