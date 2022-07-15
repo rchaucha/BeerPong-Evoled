@@ -16,6 +16,7 @@ public:
       setMinimumSize(QSize(22, 22));
       setIcon(icon);
       setCheckable(true);
+      connect(this, &QColorButton::toggled, this, &QtGUI::toggled);
    }
 
    QColor get_color() const { return _color; }

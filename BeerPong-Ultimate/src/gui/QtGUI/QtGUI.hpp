@@ -92,8 +92,8 @@ private:
 
    static const std::vector<QColor> _default_colors;
 
-   QColorButton* _selected_player_color_button;
-   QColorButton* _selected_points_color_button;
+   const QColorButton* _selected_player_color_button;
+   const QColorButton* _selected_points_color_button;
 
    std::vector<QColor> _players_lines_color;
    std::vector<QColor> _points_lines_color;

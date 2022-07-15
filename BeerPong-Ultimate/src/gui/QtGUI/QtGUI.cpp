@@ -49,8 +49,8 @@ QtGUI::QtGUI(QWidget *parent) : QMainWindow(parent)
       auto* new_player_color_button = new QColorButton(_ui.points_colors_layout, color, icon);
       auto* new_points_color_button = new QColorButton(_ui.points_colors_layout, color, icon);
 
-      connect(new_player_color_button, &QToolButton::toggled, this, &QtGUI::remove_player_line);
-      connect(new_points_color_button, &QToolButton::toggled, this, &QtGUI::remove_player_line);
+      connect(new_player_color_button, &QColorButton::toggled, this, &QtGUI::remove_player_line);
+      connect(new_points_color_button, &QColorButton::toggled, this, &QtGUI::remove_player_line);
 
       _ui.player_colors_layout->layout()->addWidget(new_player_color_button);
       _ui.points_colors_layout->layout()->addWidget(new_points_color_button);
@@ -169,32 +169,36 @@ void QtGUI::remove_points_line(QWidget* to_be_removed)
 }
 
 
-void QtGUI::_select_color(int color_index, bool checked, std::vector<QColorButton*>& color_buttons)
+void QtGUI::_select_color(const QObject* sender, bool checked, std::vector<QColorButton*>& color_buttons)
 {
+   const QColorButton* sender_button = dynamic_cast<const QColorButton*>(sender);
+
+   assert(sender_button && "Sender must be a QColorButton.");
+
    if (checked)
    {
-      _selected_color = _default_colors[color_index];
-      for (int ind = 0; ind < _color_buttons.size(); ind++)
+      _selected_player_color_button = sender_button;
+      for (QColorButton* color_button : _color_buttons)
       {
-         if (ind != color_index)
-            _color_buttons[ind]->setChecked(false);
+         if (color_button != sender_button)
+            color_button->setChecked(false);
       }
    }
    else
-      _selected_color = QColor(0, 0, 0);  // Black = no color
+      _selected_player_color_button = nullptr; // No color selected
 }
 
 
-void QtGUI::_select_player_color(int color_index, bool checked)
+void QtGUI::_select_player_color(bool checked)
 { 
-   _select_color(color_index, checked, _player_color_buttons);
+   _select_color(QObject::sender(), checked, _player_color_buttons);
    _enable_or_disable_b_add_player();
 }
 
 
-void QtGUI::_select_points_color(int color_index, bool checked)
+void QtGUI::_select_points_color(bool checked)
 {
-   _select_color(color_index, checked, _points_color_buttons);
+   _select_color(QObject::sender(), checked, _points_color_buttons);
    _enable_or_disable_b_add_points();
 }
 
@@ -202,7 +206,7 @@ void QtGUI::_select_points_color(int color_index, bool checked)
 void QtGUI::_enable_or_disable_b_add_player()
 {
    bool is_player_name_set = _ui.name_text_edit->text().size() != 0;
-   bool is_color_chosen = _selected_color != QColor(0, 0, 0);
+   bool is_color_chosen = _selected_player_color_button != nullptr;
 
    if (is_player_name_set && is_color_chosen)
       _ui.b_add_player->setDisabled(false);
@@ -214,7 +218,7 @@ void QtGUI::_enable_or_disable_b_add_player()
 void QtGUI::_enable_or_disable_b_add_points()
 {
    bool is_points_name_set = _ui.points_value->value() != 0;
-   bool is_color_chosen = _selected_color != QColor(0, 0, 0);
+   bool is_color_chosen = _selected_points_color_button != nullptr;
 
    if (is_points_name_set && is_color_chosen)
       _ui.b_add_player->setDisabled(false);
