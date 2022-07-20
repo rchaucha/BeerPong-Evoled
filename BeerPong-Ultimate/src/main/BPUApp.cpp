@@ -57,7 +57,7 @@ int BPUApp::init()
          exit(0);
    }
 
-   select_roi();
+   //select_roi();
 
    _window_size = _projector_win.size();
    _frame_size = _rgb_cam->getFrameSize();

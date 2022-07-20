@@ -44,57 +44,66 @@ private slots:
    void on_b_add_points_clicked();
    void on_b_play_clicked() { /* TODO; */ }
 
-   void on_b_white_player_toggled   (bool checked) { _select_player_color(0, checked); }
-   void on_b_blue_player_toggled    (bool checked) { _select_player_color(1, checked); }
-   void on_b_red_player_toggled     (bool checked) { _select_player_color(2, checked); }
-   void on_b_green_player_toggled   (bool checked) { _select_player_color(3, checked); }
-   void on_b_yellow_player_toggled  (bool checked) { _select_player_color(4, checked); }
-   void on_b_brown_player_toggled   (bool checked) { _select_player_color(5, checked); }
-   void on_b_pink_player_toggled    (bool checked) { _select_player_color(6, checked); }
-   void on_b_gray_player_toggled    (bool checked) { _select_player_color(7, checked); }
-   void on_b_orange_player_toggled  (bool checked) { _select_player_color(8, checked); }
    void on_b_custom_color_player_toggled(bool checked) { /* TODO; */ }
 
-   void on_b_white_points_toggled   (bool checked) { _select_points_color(0, checked); }
-   void on_b_blue_points_toggled    (bool checked) { _select_points_color(1, checked); }
-   void on_b_red_points_toggled     (bool checked) { _select_points_color(2, checked); }
-   void on_b_green_points_toggled   (bool checked) { _select_points_color(3, checked); }
-   void on_b_yellow_points_toggled  (bool checked) { _select_points_color(4, checked); }
-   void on_b_brown_points_toggled   (bool checked) { _select_points_color(5, checked); }
-   void on_b_pink_points_toggled    (bool checked) { _select_points_color(6, checked); }
-   void on_b_gray_points_toggled    (bool checked) { _select_points_color(7, checked); }
-   void on_b_orange_points_toggled  (bool checked) { _select_points_color(8, checked); }
    void on_b_custom_color_points_toggled(bool checked) { /* TODO; */ }
 
    void remove_player_line(QWidget* to_be_removed);
    void remove_points_line(QWidget* to_be_removed);
 
+   void _select_player_color(bool checked);
+   void _select_points_color(bool checked);
 
 private:
-   void _select_color(int color_index, bool checked, std::vector<QColorButton*>& color_buttons);
-   void _select_player_color(int color_index, bool checked);
-   void _select_points_color(int color_index, bool checked);
+   class ColorButtonsManager {
+   public:
+      ColorButtonsManager() = default;
+
+      void add_button(QtGUI* gui, QColor& color);
+
+      const std::vector<const QColorButton*> get_color_buttons() 
+      {
+         const std::vector<const QColorButton*> color_buttons;
+         std::transform(_player_color_buttons.cbegin(), _player_color_buttons.cend(), color_buttons.begin(),
+            [](const QColorButton* b) { return b; });;
+
+         return color_buttons;
+      }
+
+      QColor get_color(int ind) { /*TODO*/ }
+      const QIcon* get_icon(int ind) { /*TODO*/ }
+      int get_ind(const QColorButton* button) { /* TODO */ }
+
+      void set_visible(int ind, bool is_visible) {
+         _player_color_buttons[ind]->setVisible(is_visible);
+         _points_color_buttons[ind]->setVisible(is_visible);
+      }
+
+      void set_checked(int ind, bool is_checked) {
+         _player_color_buttons[ind]->setChecked(is_checked);
+         _points_color_buttons[ind]->setChecked(is_checked);
+      }
+
+   private:
+      std::vector<QColorButton*> _player_color_buttons;
+      std::vector<QColorButton*> _points_color_buttons;
+   };
+
+   friend void ColorButtonsManager::add_button(QtGUI* gui, QColor& color);
+
+   void _select_color(const QObject* sender, bool checked);
+
    void _enable_or_disable_b_add_player();
    void _enable_or_disable_b_add_points();
-
-
-
-   // TO REMOVE
-   QColor _selected_color{ 0,0,0 };
-
-
-
    
    Ui::QtGUIClass _ui;
-
-   std::vector<QColorButton*> _player_color_buttons;
-   std::vector<QColorButton*> _points_color_buttons;
+   ColorButtonsManager _color_button_manager;
 
    static const std::vector<QColor> _default_colors;
 
-   const QColorButton* _selected_player_color_button;
-   const QColorButton* _selected_points_color_button;
+   int _selected_color_button_ind;
 
    std::vector<QColor> _players_lines_color;
    std::vector<QColor> _points_lines_color;
 };
+

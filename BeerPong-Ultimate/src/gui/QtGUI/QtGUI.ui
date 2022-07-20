@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>864</width>
+    <width>807</width>
     <height>705</height>
    </rect>
   </property>
@@ -154,8 +154,8 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>827</width>
-         <height>503</height>
+         <width>770</width>
+         <height>522</height>
         </rect>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -203,7 +203,7 @@
        <string notr="true">padding: 0px </string>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="player_tab">
        <attribute name="title">
@@ -369,7 +369,7 @@
               <rect>
                <x>0</x>
                <y>0</y>
-               <width>541</width>
+               <width>503</width>
                <height>292</height>
               </rect>
              </property>
@@ -460,6 +460,19 @@
              <number>100</number>
             </property>
            </widget>
+          </item>
+          <item>
+           <spacer name="horizontalSpacer_8">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
           </item>
           <item>
            <widget class="QLabel" name="label_6">
@@ -584,7 +597,7 @@
               <rect>
                <x>0</x>
                <y>0</y>
-               <width>541</width>
+               <width>503</width>
                <height>292</height>
               </rect>
              </property>
@@ -706,7 +719,7 @@
      </widget>
     </item>
     <item>
-     <layout class="QHBoxLayout" name="horizontalLayout_8" stretch="5,0,1">
+     <layout class="QHBoxLayout" name="horizontalLayout_8" stretch="5,0,0">
       <item>
        <spacer name="horizontalSpacer_5">
         <property name="orientation">
@@ -755,7 +768,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>864</width>
+     <width>807</width>
      <height>22</height>
     </rect>
    </property>
