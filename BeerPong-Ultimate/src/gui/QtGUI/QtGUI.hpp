@@ -7,6 +7,7 @@
 #include <vector>
 
 #include "../../glasses/GlassGroupIDManager.hpp"
+#include "../../gui/CustomWidgets/QColorButton.hpp"
 
 
 struct ColoredPlayer {
@@ -18,8 +19,6 @@ struct ColoredPoints {
    Points points;
    QColor color;
 };
-
-class QColorButton;
 
 class QtGUI : public QMainWindow
 {
@@ -61,23 +60,13 @@ private:
 
       void add_button(QtGUI* gui, QColor& color);
 
-      const std::vector<const QColorButton*> get_color_buttons() 
-      {
-         const std::vector<const QColorButton*> color_buttons;
-         std::transform(_player_color_buttons.cbegin(), _player_color_buttons.cend(), color_buttons.begin(),
-            [](const QColorButton* b) { return b; });;
+      const std::vector<const QColorButton*> get_color_buttons() const;
 
-         return color_buttons;
-      }
+      QColor get_color(int ind) const { _player_color_buttons[ind]->get_color(); }
+      const QIcon* get_icon(int ind) const { _player_color_buttons[ind]->icon(); }
+      int get_ind(const QColorButton* button) const;
 
-      QColor get_color(int ind) { /*TODO*/ }
-      const QIcon* get_icon(int ind) { /*TODO*/ }
-      int get_ind(const QColorButton* button) { /* TODO */ }
-
-      void set_visible(int ind, bool is_visible) {
-         _player_color_buttons[ind]->setVisible(is_visible);
-         _points_color_buttons[ind]->setVisible(is_visible);
-      }
+      void set_visible(int ind, bool is_visible);
 
       void set_checked(int ind, bool is_checked) {
          _player_color_buttons[ind]->setChecked(is_checked);
@@ -85,6 +74,9 @@ private:
       }
 
    private:
+      void _assert_same_size() const { assert(_player_color_buttons.size() == _points_color_buttons.size()
+                                       && "Both vectors must be of same size."); }
+
       std::vector<QColorButton*> _player_color_buttons;
       std::vector<QColorButton*> _points_color_buttons;
    };
