@@ -102,7 +102,7 @@ void QtGUI::on_b_add_player_clicked()
 
    // Add Player in the list
    auto* player_line = new QPlayerListLine((QWidget*)_ui.players_list, _ui.name_text_edit->text().toStdString(),
-                     _color_button_manager.get_icon(_selected_color_button_ind)->pixmap(QSize(22, 22)));
+                     _color_button_manager.get_icon(_selected_color_button_ind).pixmap(QSize(22, 22)));
    _ui.players_list->layout()->addWidget(player_line);
 
    connect(player_line, &QListLine::remove, this, &QtGUI::remove_player_line);
@@ -119,7 +119,7 @@ void QtGUI::on_b_add_points_clicked()
 
    // Add Player in the list
    auto* points_line = new QPointsListLine((QWidget*)_ui.players_list, _ui.points_value->value(),
-                     _color_button_manager.get_icon(_selected_color_button_ind)->pixmap(QSize(22, 22)));
+                     _color_button_manager.get_icon(_selected_color_button_ind).pixmap(QSize(22, 22)));
    _ui.points_list->layout()->addWidget(points_line);
 
    connect(points_line, &QListLine::remove, this, &QtGUI::remove_points_line);
@@ -193,7 +193,7 @@ void QtGUI::ColorButtonsManager::add_button(QtGUI* gui, QColor& color)
 
 const std::vector<const QColorButton*> QtGUI::ColorButtonsManager::get_color_buttons() const
 {
-   std::vector<const QColorButton*> color_buttons;
+   std::vector<const QColorButton*> color_buttons(_player_color_buttons.size());
    std::transform(_player_color_buttons.cbegin(), _player_color_buttons.cend(), color_buttons.begin(),
       [](const QColorButton* b) { return b; });;
 

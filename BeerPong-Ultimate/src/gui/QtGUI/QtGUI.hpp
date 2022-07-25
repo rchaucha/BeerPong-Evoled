@@ -62,8 +62,8 @@ private:
 
       const std::vector<const QColorButton*> get_color_buttons() const;
 
-      QColor get_color(int ind) const { _player_color_buttons[ind]->get_color(); }
-      const QIcon* get_icon(int ind) const { _player_color_buttons[ind]->icon(); }
+      QColor get_color(int ind) const { return _player_color_buttons[ind]->get_color(); }
+      const QIcon get_icon(int ind) const { return _player_color_buttons[ind]->icon(); }
       int get_ind(const QColorButton* button) const;
 
       void set_visible(int ind, bool is_visible);
