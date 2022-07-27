@@ -38,20 +38,19 @@ private slots:
    void on_gm_selection_currentIndexChanged(int index);
 
    void on_name_text_edit_textChanged();
+   void on_points_value_valueChanged(int i);
 
    void on_b_add_player_clicked();
    void on_b_add_points_clicked();
    void on_b_play_clicked() { /* TODO; */ }
 
    void on_b_custom_color_player_toggled(bool checked) { /* TODO; */ }
-
    void on_b_custom_color_points_toggled(bool checked) { /* TODO; */ }
 
    void remove_player_line(QWidget* to_be_removed);
    void remove_points_line(QWidget* to_be_removed);
 
-   void _select_player_color(bool checked);
-   void _select_points_color(bool checked);
+   void select_color(bool checked);
 
 private:
    class ColorButtonsManager {
@@ -83,11 +82,8 @@ private:
 
    friend void ColorButtonsManager::add_button(QtGUI* gui, QColor& color);
 
-   void _select_color(const QObject* sender, bool checked);
+   void _set_enable_add_buttons();
 
-   void _enable_or_disable_b_add_player();
-   void _enable_or_disable_b_add_points();
-   
    Ui::QtGUIClass _ui;
    ColorButtonsManager _color_button_manager;
 

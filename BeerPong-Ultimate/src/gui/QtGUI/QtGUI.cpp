@@ -88,7 +88,12 @@ void QtGUI::on_gm_selection_currentIndexChanged(int index)
 
 void QtGUI::on_name_text_edit_textChanged()
 {
-   _enable_or_disable_b_add_player();
+   _set_enable_add_buttons();
+}
+
+void QtGUI::on_points_value_valueChanged(int i)
+{
+   _set_enable_add_buttons();
 }
 
 
@@ -180,8 +185,8 @@ void QtGUI::ColorButtonsManager::add_button(QtGUI* gui, QColor& color)
    auto* new_player_color_button = new QColorButton(gui->_ui.player_colors_layout, color, icon);
    auto* new_points_color_button = new QColorButton(gui->_ui.points_colors_layout, color, icon);
 
-   connect(new_player_color_button, &QColorButton::toggled, gui, &QtGUI::_select_player_color);
-   connect(new_points_color_button, &QColorButton::toggled, gui, &QtGUI::_select_points_color);
+   connect(new_player_color_button, &QColorButton::toggled, gui, &QtGUI::select_color);
+   connect(new_points_color_button, &QColorButton::toggled, gui, &QtGUI::select_color);
 
    gui->_ui.player_colors_layout->layout()->addWidget(new_player_color_button);
    gui->_ui.points_colors_layout->layout()->addWidget(new_points_color_button);
@@ -227,9 +232,10 @@ void QtGUI::ColorButtonsManager::set_visible(int ind, bool is_visible) {
 }
 
 
-void QtGUI::_select_color(const QObject* sender, bool checked)
+void QtGUI::select_color(bool checked)
 {
-   const QColorButton* sender_button = dynamic_cast<const QColorButton*>(sender);
+   // Select color buttons
+   const QColorButton* sender_button = dynamic_cast<const QColorButton*>(QObject::sender());
 
    assert(sender_button && "Sender must be a QColorButton.");
 
@@ -248,46 +254,27 @@ void QtGUI::_select_color(const QObject* sender, bool checked)
    }
    else
       _selected_color_button_ind = -1; // No color selected
+
+   _set_enable_add_buttons();
 }
 
 
-void QtGUI::_select_player_color(bool checked)
-{ 
-   _select_color(QObject::sender(), checked);
-   _enable_or_disable_b_add_player();
-}
-
-
-void QtGUI::_select_points_color(bool checked)
-{
-   _select_color(QObject::sender(), checked);
-   _enable_or_disable_b_add_points();
-}
-
-
-void QtGUI::_enable_or_disable_b_add_player()
+void QtGUI::_set_enable_add_buttons()
 {
    bool is_player_name_set = _ui.name_text_edit->text().size() != 0;
+   bool is_points_name_set = _ui.points_value->value() != 0;
    bool is_color_chosen = _selected_color_button_ind != -1;
 
    if (is_player_name_set && is_color_chosen)
       _ui.b_add_player->setDisabled(false);
    else
       _ui.b_add_player->setDisabled(true);
-}
-
-
-void QtGUI::_enable_or_disable_b_add_points()
-{
-   bool is_points_name_set = _ui.points_value->value() != 0;
-   bool is_color_chosen = _selected_color_button_ind != -1;
 
    if (is_points_name_set && is_color_chosen)
       _ui.b_add_player->setDisabled(false);
    else
       _ui.b_add_player->setDisabled(true);
 }
-
 
 
 /*
