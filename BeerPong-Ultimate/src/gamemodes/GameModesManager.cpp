@@ -3,11 +3,17 @@
 #include "RandomGM.hpp"
 
 
-std::unique_ptr<GameMode> GameModesManager::create_new_gamemode(std::string gamemode_name, std::set<Player>&& players, std::set<Points>&& points)
+GameModesManager::GameModesManager()
 {
-   std::unique_ptr<GameMode> gamemode(nullptr);
-   if (gamemode_name == "Random")
-      gamemode = std::make_unique<RandomGM>();
+   _gamemode_instances[GameModesEnum::Random] = std::unique_ptr<GameMode>(new RandomGM());
+}
+
+
+std::unique_ptr<GameMode> GameModesManager::get_gamemode(GameModesEnum gamemode_name, std::set<Player>&& players, std::set<Points>&& points)
+{
+   _assert_gamemode_added(gamemode_name);
+
+   std::unique_ptr<GameMode> gamemode = std::unique_ptr<GameMode>(new RandomGM());
 
    if (gamemode)
    {
@@ -18,10 +24,29 @@ std::unique_ptr<GameMode> GameModesManager::create_new_gamemode(std::string game
    return gamemode;
 }
 
-std::string GameModesManager::get_description(std::string gamemode_name)
-{
-   if (gamemode_name == "Random")
-      return "Les verres sont attribués de manière aléatoire de manière équitable.";
 
-   return "";
+std::string GameModesManager::get_name(GameModesEnum gamemode_name)
+{
+   _assert_gamemode_added(gamemode_name);
+
+   return _gamemode_instances[gamemode_name]->get_name();
+}
+
+
+std::string GameModesManager::get_description(GameModesEnum gamemode_name)
+{
+   _assert_gamemode_added(gamemode_name);
+
+   return _gamemode_instances[gamemode_name]->get_description();
+}
+
+
+std::vector<GameModesManager::GameModesEnum> GameModesManager::get_gamemodes() const
+{
+   std::vector<GameModesEnum> gamemodes;
+
+   for (int i = GameModesEnum::FIRST + 1; i < GameModesEnum::LAST; i++)
+      gamemodes.push_back(static_cast<GameModesEnum>(i));
+
+   return gamemodes;
 }

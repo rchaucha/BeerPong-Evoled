@@ -21,6 +21,9 @@ struct CircleInGroup
 class GameMode
 {
 public:
+   virtual std::string get_name() = 0;
+   virtual std::string get_description() = 0;
+
    virtual void update_logic(std::map<GlassID, QRectF>& circles) = 0;
    virtual void update_view() = 0;
 

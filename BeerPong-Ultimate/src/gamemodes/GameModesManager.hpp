@@ -6,16 +6,30 @@
 #include <memory>
 
 #include "../glasses/GlassGroupIDManager.hpp"
+#include "RandomGM.hpp"
 
 class GameMode;
 
 class GameModesManager
 {
 public:   
-   static std::unique_ptr<GameMode> create_new_gamemode(std::string gamemode_name, std::set<Player>&& players, std::set<Points>&& points);
+   GameModesManager();
 
-   static std::string get_description(std::string gamemode_name);
+   enum GameModesEnum { FIRST, Random, LAST};
+
+   std::unique_ptr<GameMode> get_gamemode(GameModesEnum gamemode, std::set<Player>&& players, std::set<Points>&& points);
+
+   std::string get_name(GameModesEnum gamemode_name);
+   std::string get_description(GameModesEnum gamemode_name);
+
+   std::vector<GameModesEnum> get_gamemodes() const;
+   GameModesEnum get_gamemode(int ind) const { return static_cast<GameModesEnum>(ind + 1); } // Add one to skip "FIRST" 
 
 private:
-   inline static std::vector<std::string> _gamemodes_names = { "Random" };
+   std::map<GameModesEnum, std::unique_ptr<GameMode>> _gamemode_instances;
+
+   void _assert_gamemode_added(GameModesEnum gamemode_name) const {
+      assert(_gamemode_instances.find(gamemode_name) != _gamemode_instances.end() 
+         && "Gamemode not added in the map.");
+   }
 };

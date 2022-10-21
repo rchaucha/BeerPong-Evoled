@@ -11,6 +11,10 @@ class RandomGM : public GameMode
 public:
    RandomGM();
 
+   virtual std::string get_name() override { return "Random"; };
+   virtual std::string get_description() override 
+   { return "Les verres sont attribués aléatoirement de manière équitable."; };
+
    virtual void update_logic(std::map<GlassID, QRectF>& circles) override;
    virtual void update_view() override;
 

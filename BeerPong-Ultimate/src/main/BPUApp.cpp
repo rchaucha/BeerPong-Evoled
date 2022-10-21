@@ -47,15 +47,15 @@ int BPUApp::init()
 
    open_webcam(0);
 
-   // We miss a few images on purpose to let the webcam stabilize
-   for (int i = 0; i < 30; i++)
-      _rgb_cam->updateFrame();
-
    if (_rgb_cam->isFrameEmpty())
    {
       if (_err_msg("Impossible d'obtenir l'image de la webcam.") == QMessageBox::Close)
          exit(0);
    }
+
+   // We skip a few images on purpose to let the webcam stabilize
+   for (int i = 0; i < 30; i++)
+      _rgb_cam->updateFrame();
 
    //select_roi();
 

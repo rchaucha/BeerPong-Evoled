@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>807</width>
-    <height>705</height>
+    <width>992</width>
+    <height>801</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -154,8 +154,8 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>770</width>
-         <height>522</height>
+         <width>955</width>
+         <height>465</height>
         </rect>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -203,7 +203,7 @@
        <string notr="true">padding: 0px </string>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="player_tab">
        <attribute name="title">
@@ -364,16 +364,19 @@
             <property name="widgetResizable">
              <bool>true</bool>
             </property>
-            <widget class="QWidget" name="player_list_layout">
+            <widget class="QWidget" name="player_list_layout_with_spacer">
              <property name="geometry">
               <rect>
                <x>0</x>
                <y>0</y>
-               <width>503</width>
-               <height>292</height>
+               <width>626</width>
+               <height>366</height>
               </rect>
              </property>
              <layout class="QVBoxLayout" name="verticalLayout_5">
+              <item>
+               <layout class="QVBoxLayout" name="player_list_layout"/>
+              </item>
               <item>
                <spacer name="verticalSpacer_2">
                 <property name="orientation">
@@ -597,8 +600,8 @@
               <rect>
                <x>0</x>
                <y>0</y>
-               <width>503</width>
-               <height>292</height>
+               <width>626</width>
+               <height>366</height>
               </rect>
              </property>
              <layout class="QVBoxLayout" name="verticalLayout_6">
@@ -768,7 +771,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>807</width>
+     <width>992</width>
      <height>22</height>
     </rect>
    </property>
@@ -786,7 +789,7 @@
  <layoutdefault spacing="6" margin="11"/>
  <resources>
   <include location="QtGUI.qrc"/>
-  <include location="C:/Users/Remi/.designer/backup/QtGUI.qrc"/>
+  <include location="QtGUI.qrc"/>
  </resources>
  <connections/>
 </ui>
